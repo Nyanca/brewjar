@@ -37,6 +37,11 @@ def signin():
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+@app.route('/choose-a-brew')
+def filter_results():
+    return render_template('filterform.html')
+    
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
