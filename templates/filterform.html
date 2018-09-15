@@ -5,7 +5,7 @@
 <form action="{{url_for ('home')}}" method="POST" class="col s12">
     <div class='row'>
         <div class="input-field col s12">
-            <select multiple>
+            <select id='brew-type' name='brew-type' multiple >
               <option value="" disabled selected>Alcohol or Botanical?</option>
               <option value="1">Beer</option>
               <option value="2">Wine</option>
@@ -21,7 +21,7 @@
     </div>
     <div class='row'>
         <div class="input-field col s12">
-            <select multiple>
+            <select id='stuff-free' name='stuff-free' multiple>
               <option value="" disabled selected>Stuff-free?</option>
               <option value="1">gluten-free</option>
               <option value="2">dairy-free</option>
@@ -34,32 +34,37 @@
     <div>
         <p>Sort By</p>
         <label>
-          <input class="with-gap" name="group3" type="radio" checked/>
+          <input class="with-gap" id ="sortby" name="sortby" type="radio" checked/>
           <span>Upvotes</span>
         </label>
         <label>
-          <input class="with-gap" name="group3" type="radio" checked/>
+          <input class="with-gap" id ="sortby" name="sortby" type="radio" checked/>
           <span>Recently Added</span>
         </label>
         <label>
-          <input class="with-gap" name="group3" type="radio" checked/>
+          <input class="with-gap" id ="sortby" name="sortby" type="radio" checked/>
           <span>Most Relevant</span>
         </label>
     </div>
-     <div>
+    <div>
         <p>Brewing Level</p>
         <label>
-          <input class="with-gap" name="group3" type="radio" checked/>
+          <input class="with-gap" id='level' name="level" type="radio" checked/>
           <span>Easy</span>
         </label>
         <label>
-          <input class="with-gap" name="group3" type="radio" checked/>
+          <input class="with-gap" id='level' name="level" type="radio" checked/>
           <span>Intermediate</span>
         </label>
         <label>
-          <input class="with-gap" name="group3" type="radio" checked/>
+          <input class="with-gap" id='level' name="level" type="radio" checked/>
           <span>Advanced</span>
         </label>
+    </div>
+    <div class='row'>
+        <button class="btn waves-effect waves-light" type="submit" id="filterform" name="filterform">Find Brews
+            <i class="material-icons right">local_drink</i>
+        </button>
     </div>
 </form>
 

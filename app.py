@@ -39,10 +39,31 @@ def home():
     return render_template('home.html')
 
 @app.route('/choose-a-brew')
-def filter_results():
-    return render_template('filterform.html')
+def choose_a_brew():
+    return render_template('filterform.html') 
+
+@app.route('/filter-results', methods=['POST'])
+def filter_results(filtermatch):
+    brews = mongo.db.brew.find(['wine']['beer']['cider']['liquer']
+    ['tea']['kombucha']['tincture']['cordial'])
+    filterby = []
     
+    brewtype= request.form.get('brew-type')
+    stufffree = request.form.get('stuff-free')
+    level = request.form.get('level')
     
+    filterby.append(brewtype, stufffree, level)
+    
+    if (filtermatch in filterby):
+        return True;
+    else:
+        return False
+        
+    filterresults = filter(filter_results, brews)
+    
+    for brew in filterresults:
+        return brew
+        
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
