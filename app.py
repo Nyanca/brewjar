@@ -42,28 +42,53 @@ def home():
 def choose_a_brew():
     return render_template('filterform.html') 
 
-@app.route('/filter-results', methods=['POST'])
-def filter_results(filtermatch):
-    brews = mongo.db.brew.find(['wine']['beer']['cider']['liquer']
-    ['tea']['kombucha']['tincture']['cordial'])
+@app.route('/brew-results', methods=['POST'])
+def brew_results():
+    brews = mongo.db.brew
+    
     filterby = []
     
     brewtype= request.form.get('brew-type')
     stufffree = request.form.get('stuff-free')
     level = request.form.get('level')
     
-    filterby.append(brewtype, stufffree, level)
+    filterby.append(brewtype)
+    filterby.append(stufffree)
+    filterby.append(level)
     
-    if (filtermatch in filterby):
-        return True;
-    else:
-        return False
-        
-    filterresults = filter(filter_results, brews)
+    def gg(filtermatch):
     
-    for brew in filterresults:
-        return brew
-        
+        if (filtermatch in filterby):
+            return True;
+        else:
+            return False
+                
+    brewresults = filter(gg, brews)
+            
+    return render_template('brewresults.html', brewresults = brewresults)
+    
+@app.route('/success')
+def success():
+    return render_template('success.html')
+
+@app.route('/add-profile')
+def add_profile():
+    return render_template('addbrewProfile.html')
+
+@app.route('/add-recipe')
+def add_recipe():
+    return render_template('addbrewRecipe.html')
+
+@app.route('/my-brews') 
+def my_brews():
+    return render_template('mybrews.html')
+    
+@app.route('/insert-brew')
+def insert_brew():
+    brews = mongo.db.brew
+    brews.insert_one(request.form.to_dict())
+    return redirect(url_for('success'))
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),

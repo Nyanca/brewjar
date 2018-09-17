@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% block content %}
+<h4>Add Brew Recipe</h4>
+
+<form action="{{url_for ('insert_brew')}}" method="POST" class="col s12">
+    <div class="row">
+        <div class="input-field col s12 m6 l6 xl6">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="equip_list" name="equip_list" type="text" class="validate">
+            <label for="icon_prefix">Add equipment list</label>
+        </div>
+        <div class="input-field col s12 m6 l6 xl6">
+            <i class="material-icons prefix">phone</i>
+            <input id="ingredients_list" name="ingredients_list" type="tel" class="validate">
+            <label for="icon_telephone">Add ingredients list</label>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">phone</i>
+            <input id="prep-method" name="prep-method" type="tel" class="validate">
+            <label for="icon_telephone">Add preparation instruction</label>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="added_by" name="added_by" type="tel" class="validate">
+            <label for="icon_telephone">Add your user name</label>
+        </div>
+    </div>
+    <div class='row'>
+        <button class="btn waves-effect waves-light" type="submit" id="addbrew" name="addbrew">Add Recipe
+            <i class="material-icons right">local_drink</i>
+        </button>
+    </div>
+</form>
+{% endblock %}
