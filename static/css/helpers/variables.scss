@@ -1,0 +1,52 @@
+//google fonts import
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Quicksand');
+
+// colors
+$white: #FDFCFC;
+$grey: #F2F3F3;
+$darkgrey: #C7C8CA;
+$teal: #2CACB0;
+
+//fonts
+$brewjarfont:'Nanum Gothic',
+sans-serif;
+$sitefont:'Quicksand',
+sans-serif;
+
+// placeholders
+%bigbutton a i {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: $darkgrey;
+    background-color: $grey;
+    color: $teal;
+    line-height: 2em;
+    text-align: center;
+    width: 2em;
+    height: 2em;
+}
+
+// %mainbutton a i {
+//     background-color: $teal;
+//     color: $white;
+//     border-radius: 20px;
+//     text-align: center;
+//     font-family: $brewjarfont;
+//     width: 100px;
+//     height: 100px;
+// }
+
+%buttonhover a i:hover {
+    background-color: $darkgrey;
+    color: $white;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+
+%icon i {
+    color: $teal;
+}

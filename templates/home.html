@@ -1,19 +1,24 @@
 {% extends 'base.html' %}{% block content %}
 
-<h4>Hi, {{ username }} </h4>
+<h4 class='brewjarfont center-text'>Hi, {{ username }} </h4>
 
-<div class='row'>
-    <div class='col s12'>
-        <a href="{{url_for ('choose_a_brew')}}"><svg width="100" height="100"><circle cx="50" cy="50" r="50" fill="purple"/>
-        Browse Brews</svg></a>
-        <a href="{{url_for ('add_profile')}}"><svg width="100" height="100"><circle cx="50" cy="50" r="50" fill="yellow"/>
-        Create a Brew</svg></a>
+<div class='greybackground'>
+    <div class='row center'>
+        <div class='col s12 m6 l6 xl6 bigbutton'>
+            <a href="{{url_for ('choose_a_brew')}}"><i class="fas fa-wine-glass-alt fa-3x"></i></a>
+            <p class='sitefont'>Browse Brews</p>
+        </div>
+
+        <div class='col s12 m6 l6 xl6 bigbutton'>
+            <a href="{{url_for ('add_profile')}}"><i class="fas fa-glass-martini fa-3x"></i></a>
+            <p class='sitefont'>Create a Brew</p>
+        </div>
     </div>
-</div>
-<div class=row>
-    <div class='col s12'>
-        <a href="{{url_for ('my_brews')}}"><svg width="100" height="100"><circle cx="50" cy="50" r="50" fill="pink"/>
-        MyBrews</svg></a>
+    <div class='row center'>
+        <div class='col s12 bigbutton'>
+            <a href="{{url_for ('my_brews')}}"><i class="fas fa-leaf fa-3x"></i></a>
+            <p class='sitefont'>My Brews</p>
+        </div>
     </div>
 </div>
 

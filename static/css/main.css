@@ -1,3 +1,71 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic|Quicksand");
+.bigbutton a i {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #C7C8CA;
+  background-color: #F2F3F3;
+  color: #2CACB0;
+  line-height: 2em;
+  text-align: center;
+  width: 2em;
+  height: 2em; }
 
+.bigbutton a i:hover {
+  background-color: #C7C8CA;
+  color: #FDFCFC;
+  transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out; }
+
+.icon i {
+  color: #2CACB0; }
+
+.mainbutton {
+  background-color: #2CACB0;
+  color: #FDFCFC;
+  border-radius: 20px;
+  text-align: center;
+  font-family: "Nanum Gothic", sans-serif;
+  width: 100px;
+  height: 100px; }
+
+.footerstyle {
+  background-color: #C7C8CA;
+  font-family: "Nanum Gothic", sans-serif;
+  color: #F2F3F3;
+  padding: 20px;
+  text-align: center; }
+
+.sitefont {
+  font-family: "Quicksand", sans-serif; }
+
+.brewjarfont {
+  font-family: "Nanum Gothic", sans-serif; }
+
+.header {
+  background-color: #FDFCFC;
+  padding: 50px;
+  margin-bottom: 10px; }
+
+.left {
+  float: left;
+  padding-left: 10px; }
+
+.right {
+  float: right;
+  padding-right: 10px; }
+
+.center-text {
+  text-align: center; }
+
+.spacer {
+  padding: 5px; }
+
+.greybackground {
+  background-color: #F2F3F3;
+  padding: 20px;
+  margin: 20px; }
 
 /*# sourceMappingURL=main.css.map */

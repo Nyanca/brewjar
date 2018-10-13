@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, jsonify
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 
@@ -11,28 +11,28 @@ app.config['MONGO_URI'] = 'mongodb://admin:99Prism@ds225382.mlab.com:25382/brewj
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 
-@app.route('/create-account')
-def add_user():
-    if request.method == ['POST']:
-        hashed_password = bcrypt.generate_password_hash(request.form['password']).decode(utf-8)
-        user = User(username=request.form['username'], email=request.form['email'], password=hashed_password)
-        mongo.db.user.insert_one(user)
+# @app.route('/create-account')
+# def add_user():
+#     if request.method == ['POST']:
+#         hashed_password = bcrypt.generate_password_hash(request.form['password']).decode(utf-8)
+#         user = User(username=request.form['username'], email=request.form['email'], password=hashed_password)
+#         mongo.db.user.insert_one(user)
     
-    return render_template('createaccount.html')
+#     return render_template('createaccount.html')
 
-@app.route('/sign-in', methods=['POST'])
-def signin():
-    _user = mongo.db.user.findOne()
-    valid_user = [user for user in _user]
+# @app.route('/sign-in', methods=['POST'])
+# def signin():
+#     _user = mongo.db.user.findOne()
+#     valid_user = [user for user in _user]
     
-    if request.method == 'POST':
-        error = None
-        if request.form['email'] != 'admin' or request.form['password'] != 'admin':
-            error = 'The username and password do not match. Try again, or create an account'
-        else:
-            return redirect(url_for('home'))
+#     if request.method == 'POST':
+#         error = None
+#         if request.form['email'] != 'admin' or request.form['password'] != 'admin':
+#             error = 'The username and password do not match. Try again, or create an account'
+#         else:
+#             return redirect(url_for('home'))
             
-    return render_template('signin.html', error=error)
+#     return render_template('signin.html', error=error)
 
 @app.route('/home')
 def home():
@@ -41,8 +41,8 @@ def home():
 @app.route('/choose-a-brew')
 def choose_a_brew():
     return render_template('filterform.html') 
-
-@app.route('/brew-results', methods=['POST'])
+        
+@app.route('/brew-results', methods=['GET','POST'])
 def brew_results():
     brews = mongo.db.brew
     
@@ -62,10 +62,11 @@ def brew_results():
             return True;
         else:
             return False
-                
-    brewresults = filter(gg, brews)
+    
+    brews2 = brews.find()    
+    brewresults = filter(gg, brews2)
             
-    return render_template('brewresults.html', brewresults = brewresults)
+    return render_template('brewresults.html', brewresults=brewresults)
     
 @app.route('/success')
 def success():

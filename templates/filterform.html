@@ -1,8 +1,8 @@
 {% extends 'base.html' %}{% block content %}
 
-<h5>What type of brew are you looking for today?</h5>
+<h5 class='center-text brewjarfont'>What type of brew are you looking for today?</h5>
 
-<form action="{{url_for ('brew_results')}}" method="POST" class="col s12">
+<form action="{{url_for ('brew_results')}}" method="POST" class="col s12 sitefont greybackground">
     <div class='row'>
         <div class="input-field col s12">
             <select id='brew-type' name='brew-type' multiple >
@@ -31,40 +31,40 @@
             <label>for the allergic among you</label>
         </div>
     </div>
-    <div>
+    <div class='center-text'>
         <p>Sort By</p>
         <label>
-          <input class="with-gap" id ="sortby" name="sortby" type="radio" checked/>
+          <input class="with-gap" id ="sortby" name="sortby" type="radio"/>
           <span>Upvotes</span>
         </label>
         <label>
-          <input class="with-gap" id ="sortby" name="sortby" type="radio" checked/>
+          <input class="with-gap" id ="sortby" name="sortby" type="radio"/>
           <span>Recently Added</span>
         </label>
         <label>
-          <input class="with-gap" id ="sortby" name="sortby" type="radio" checked/>
+          <input class="with-gap" id ="sortby" name="sortby" type="radio"/>
           <span>Most Relevant</span>
         </label>
     </div>
-    <div>
+    <div class='center-text'>
         <p>Brewing Level</p>
         <label>
-          <input class="with-gap" id='level' name="level" type="radio" checked/>
+          <input class="with-gap" id='level' name="level" type="radio"/>
           <span>Easy</span>
         </label>
         <label>
-          <input class="with-gap" id='level' name="level" type="radio" checked/>
+          <input class="with-gap" id='level' name="level" type="radio"/>
           <span>Intermediate</span>
         </label>
         <label>
-          <input class="with-gap" id='level' name="level" type="radio" checked/>
+          <input class="with-gap" id='level' name="level" type="radio"/>
           <span>Advanced</span>
         </label>
     </div>
-    <div class='row'>
-        <button class="btn waves-effect waves-light" type="submit" id="filterform" name="filterform">Find Brews
-            <i class="material-icons right">local_drink</i>
-        </button>
+    <br class='spacer'>
+    <div class='row center-text'>
+        <a href="{{url_for ('add_recipe')}}"><button class='mainbutton' type="submit" id="filterform" name="filterform">Find Recipes<br>
+            <i class="material-icons">local_drink</i></button></a>
     </div>
 </form>
 

@@ -5,16 +5,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" type="text/css" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" type="text/css" />
 
 </head>
 
 <body>
-    <div class=container>
-        <header>
-            <div class='row'>
-                <div class='col s6 m6 l6 xl 6'><a href="{{url_for ('home')}}"><img src='images/brewIcon.svg'></img></a></div>
-                <div class='col s6 m6 l6 xl 6'><i class="material-icons prefix">account_circle</i></div>
+    <div>
+        <header class='header'>
+            <div class='row left'>
+                <div class='col s6 m6 l6 xl 6'><a href="{{url_for ('home')}}"><img src='images/brewjar_jar.png' alt='Brewjar'></a></div>
+            </div>
+            <div class="row right">
+                <div class='col s6 m6 l6 xl 6 icon right'><i class="fas fa-user-circle fa-3x"></i><br>{{ username }}</div>
             </div>
         </header>
     </div>
@@ -29,7 +32,7 @@
             $('.sidenav').sidenav();
         });
     </script>
-
+    <footer class='footerstyle'><strong>Brewjar App 2018&copy</strong> | a project for CI Dublin</footer>
 </body>
 
 </html>

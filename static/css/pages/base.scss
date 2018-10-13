@@ -1,0 +1,47 @@
+//fonts
+.sitefont{
+    font-family: $sitefont;
+}
+
+.brewjarfont{
+    font-family: $brewjarfont;
+}
+
+//header
+.header{
+    background-color: $white;
+    padding: 50px;
+    margin-bottom: 10px;
+}
+
+//icons & images
+.icon{
+    @extend %icon;
+}
+
+//alignment, padding & margins
+.left{
+    float: left;
+    padding-left: 10px;
+}
+
+.right{
+    float: right;
+    padding-right: 10px;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.spacer{
+    padding:5px;
+}
+
+//backgrounds
+.greybackground{
+   background-color: $grey; 
+   padding: 20px;
+   margin: 20px;
+}
+

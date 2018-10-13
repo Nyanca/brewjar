@@ -1,17 +1,17 @@
 {% extends 'base.html' %}{% block content %}
-<h4>Add Brew Profile</h4>
+<h4 class='brewjarfont center-text'>Add Brew Profile</h4>
 
-<form action="{{url_for ('insert_brew')}}" method="POST" class="col s12">
+<form action="{{url_for ('insert_brew')}}" method="POST" class="col s12 sitefont greybackground">
     <div class="row">
-        <div class="input-field col s12 m6 l6 xl6">
-            <i class="material-icons prefix">account_circle</i>
+        <div class="input-field col s12 m6 l6 xl6 icon">
+            <i class="material-icons prefix">label</i>
             <input id="recipe_name" name="recipe_name" type="text" class="validate">
             <label for="icon_prefix">Recipe Name</label>
         </div>
-        <div class="input-field col s12 m6 l6 xl6">
-            <i class="material-icons prefix">phone</i>
+        <div class="input-field col s12 m6 l6 xl6 icon">
+            <i class="material-icons prefix">label</i>
             <input id="recipe_decription" name="recipe_description" type="tel" class="validate">
-            <label for="icon_telephone">Telephone</label>
+            <label for="icon_telephone">Author Name</label>
         </div>
     </div>
     <div class='row'>
@@ -157,9 +157,9 @@
             <label>Add brew properties</label>
         </div>
     </div>
-    <div class='row'>
-        <a href="{{url_for ('add_recipe')}}"><button class="btn waves-effect waves-light" type="submit" id="filterform" name="filterform">Add Recipe Profile
-            <i class="material-icons right">local_drink</i></button></a>
+    <div class='row center-text'>
+        <a href="{{url_for ('add_recipe')}}"><button class='mainbutton' type="submit" id="filterform" name="filterform">Add Recipe Profile<br>
+            <i class="material-icons">local_drink</i></button></a>
     </div>
 </form>
 {% endblock %}

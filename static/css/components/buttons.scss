@@ -1,0 +1,16 @@
+//user homepage buttons
+.bigbutton {
+    @extend %bigbutton;
+    @extend %buttonhover;
+}
+
+//button main style for use throughout app
+.mainbutton {
+    background-color: $teal;
+    color: $white;
+    border-radius: 20px;
+    text-align: center;
+    font-family: $brewjarfont;
+    width: 100px;
+    height: 100px;
+}
