@@ -1,6 +1,12 @@
 Flask==1.0.2
+Flask-Bcrypt==0.7.1
+Flask-PyMongo==2.1.0
 Jinja2==2.10
 MarkupSafe==1.0
 Werkzeug==0.14.1
+bcrypt==3.1.4
+cffi==1.11.5
 click==6.7
 itsdangerous==0.24
+pycparser==2.18
+pymongo==3.7.1

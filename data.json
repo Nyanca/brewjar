@@ -1,8 +1,8 @@
 {
     "_id": {
-        "$oid": "5b94faeefb6fc01dae40ea8c"
+        "$oid": "5bc53e0ce7179a4377fb226e"
     },
-    "Category": {
+    "category": {
         "alcohol": {
             "wine": [
                 {
@@ -136,7 +136,7 @@
                 {}
             ]
         },
-        "Botanical": {
+        "botanical": {
             "tea": [
                 {
                     "cat_name": "tea",

@@ -19,6 +19,11 @@
     @extend %icon;
 }
 
+//buttons
+.col.s12 > .btn{
+    width: 50%;
+}
+
 //alignment, padding & margins
 .left{
     float: left;
@@ -38,10 +43,17 @@
     padding:5px;
 }
 
+.half-width{
+    width:50%;
+}
+
+.medium-padding-top{
+    margin: 50px;
+}
+
 //backgrounds
 .greybackground{
    background-color: $grey; 
    padding: 20px;
    margin: 20px;
 }
-
