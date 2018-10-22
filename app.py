@@ -1,6 +1,8 @@
 import os
+import json
+from bson import json_util
 from flask import Flask, render_template, redirect, request, url_for, jsonify
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, ObjectId
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
@@ -54,33 +56,39 @@ def get_filter_results():
     #get DB collection 
     allbrews = mongo.db.brew
     
-    # filter json data test; start pipeline
-    f = allbrews.aggregate([
-    {"$match": {
-       "category.alcohol.wine.level":"beginner"
-            }
-        }
-    ])
-    
-    # # assign index to relevant search targets for faster search
-    # allbrews.create_index([('cat_name', 'text')])
-    # allbrews.create_index([('level', 'text')])
-    # allbrews.create_index([('free-from', 'text')])
-    
     # # initialize empty list to store form data
     # brew_choice_list = []
     # stufffree_list = []
-    # level = ""
+    # # level = ''
     
-    # #get form submissions
-    # stufffree = request.form.get('stuff-free')
-    # level = request.form.get('level')
-    # brew_types = request.form.get('brew-type')
+    #get form submissions
+    stufffree = request.form.get('stuff-free')
+    level = request.form.get('level')
+    brew_types = request.form.get('brew-type')
     
     # #append to lists
     # brew_choice_list.append(brew_types)
     # stufffree_list.append(stufffree)
-    # level.append(level)
+    # # level.append(level)
+    
+    filter_results = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
+    f = str(list(filter_results))
+    
+    
+    # filter_results = allbrews.find({
+    #     "$and": [
+    #      {"recipe_profile.cat_name":brew_types},
+    #      {"recipe_profile.level":level},
+    #     ]
+    # })
+    
+    
+
+    # {"recipe_profile.free-from": {$eq: stufffree}}
+    # # assign index to relevant search targets for faster search
+    # allbrews.create_index([('cat_name', 'text')])
+    # allbrews.create_index([('level', 'text')])
+    # allbrews.create_index([('free-from', 'text')]
         
     # def filtermatch(brew_choices):
     #     if (brew_choices in all_brews):
@@ -96,6 +104,16 @@ def get_filter_results():
 # def success():
 #     return render_template('success.html')
 
+@app.route('/return_all')
+def return_all():
+    db = mongo.db.brew;
+
+    documents = db.find({"recipe_profile.cat_name":"beer"})
+    
+    
+    # ({"category_1.id_alc": ObjectId("d4a2b4ab7c0aa0388de410d4")},{"category_1.alcohol": {"$elemMatch": {"level":'beginner', "cat_name":"wine", "free-from":"gluten-free"}})]
+    return json_util.dumps({'cursor': documents}) 
+    
 @app.route('/add-profile')
 def add_profile():
     return render_template('addbrewProfile.html')
@@ -108,11 +126,45 @@ def add_recipe():
 def my_brews():
     return render_template('mybrews.html')
     
-@app.route('/insert-brew')
+@app.route('/insert-brew', methods=['POST'])
 def insert_brew():
     brews = mongo.db.brew
-    brews.insert_one(request.form.to_dict())
-    return redirect(url_for('success'))
+    
+    # return form field submissions from addBrewProfile
+
+    recipe_name = request.form['recipe_name']
+    author_name = request.form['author_name']
+    recipe_description = request.form['recipe_description']
+    category_name = request.form['cat-name']
+    style = request.form['style']
+    flavour = request.form['flavour']
+    # level = request.form['level']
+    # region = request.form['region']
+    method = request.form['method']
+    freefrom = request.form['free-from']
+    properties = request.form['properties']
+
+    # add user input to the brew collection
+    
+    # brews.insert_one({"_id": ObjectId("5bc53e0ce7179a4377fb226e")},
+    # {"$addToSet": 
+    #     {"category.alcohol":
+    #         {
+    #         "cat_name": category_name,
+    #         "recipe_name": recipe_name,
+    #         "style": style,
+    #         # "level": level,
+    #         "flavour": flavour,
+    #         # "region": region,
+    #         "method": method,
+    #         "properties": properties,
+    #         "free-from": freefrom
+    #         }
+    #     }
+    # })
+    
+    # brews.insert_one(request.form.to_dict())
+    return render_template('success.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

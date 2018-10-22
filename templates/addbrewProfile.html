@@ -10,44 +10,48 @@
         </div>
         <div class="input-field col s12 m6 l6 xl6 icon">
             <i class="material-icons prefix">label</i>
-            <input id="recipe_decription" name="recipe_description" type="tel" class="validate">
+            <input id="author_name" name="author_name" type="tel" class="validate">
             <label for="icon_telephone">Author Name</label>
+        </div>
+        <div class="input-field col s12 m12 l12 xl12">
+            <i class="material-icons prefix">heart</i>
+            <textarea id="recipe_decription" name="recipe_description" type="tel" class="validate icon"></textarea>
+            <label for="icon_telephone">Recipe Description</label>
         </div>
     </div>
     <div class='row'>
         <div class="input-field col s12 m6 l6 xl6">
             <select id='cat-name' name='cat-name'>
               <option value="" disabled selected>Choose your brew type</option>
-              <option value="1">Beer</option>
-              <option value="2">Wine</option>
-              <option value="3">cider</option>
-              <option value="4">liquer</option>
-              <option value="5">tea</option>
-              <option value="6">tincture</option>
-              <option value="7">cordial</option>
-              <option value="8">kombucha</option>
+              <option value="beer">Beer</option>
+              <option value="wine">Wine</option>
+              <option value="cider">cider</option>
+              <option value="liquer">liquer</option>
+              <option value="tea">tea</option>
+              <option value="tincture">tincture</option>
+              <option value="cordial">cordial</option>
+              <option value="kombucha">kombucha</option>
             </select>
             <label>Alcohol or Botanical?</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
             <select id='style' name='style' multiple>
               <option value="" disabled selected>Chooose a style type</option>
-              <option value="1">red wine</option>
-              <option value="2">white wine</option>
-              <option value="3">sparking wine</option>
-              <option value="4">IPA</option>
-              <option value="1">lager</option>
-              <option value="2">pilsner</option>
-              <option value="3">sparking wine</option>
-              <option value="4">ale</option>
-              <option value="1">porter</option>
-              <option value="2">stout</option>
-              <option value="3">infiltered cider</option>
-              <option value="4">dry cider</option>
-              <option value="1">sweet cider</option>
-              <option value="2">medicinal brew</option>
-              <option value="3">ayurvedic brew</option>
-              <option value="4">other</option>
+              <option value="red wine">red wine</option>
+              <option value="white wine">white wine</option>
+              <option value="sparkling wine">sparking wine</option>
+              <option value="IPA">IPA</option>
+              <option value="lager">lager</option>
+              <option value="pilsner">pilsner</option>
+              <option value="ale">ale</option>
+              <option value="porter">porter</option>
+              <option value="stoute">stout</option>
+              <option value="unfiltered cider">infiltered cider</option>
+              <option value="dry cider">dry cider</option>
+              <option value="sweet cider">sweet cider</option>
+              <option value="medicinal brew">medicinal brew</option>
+              <option value="ayurvedic brew">ayurvedic brew</option>
+              <option value="other">other</option>
             </select>
             <label></label>
         </div>
@@ -56,33 +60,33 @@
         <div class="input-field col s12 m6 l6 xl6">
             <select id='flavour' name='flavour' multiple>
               <option value="" disabled selected>Choose relevant option(s) below</option>
-              <option value="1">tart</option>
-              <option value="2">bitter</option>
-              <option value="3">sweet</option>
-              <option value="4">hoppy</option>
-              <option value="5">malty</option>
-              <option value="6">fruity</option>
-              <option value="7">spicy</option>
-              <option value="8">smokey</option>
-              <option value="1">roasted</option>
-              <option value="2">silky</option>
-              <option value="3">mellow</option>
-              <option value="4">rich</option>
-              <option value="5">bold</option>
-              <option value="6">crisp</option>
-              <option value="7">herbaceous</option>
-              <option value="8">complex</option>
-              <option value="1">citrus</option>
-              <option value="2">other</option>
+              <option value="tart">tart</option>
+              <option value="bitter">bitter</option>
+              <option value="sweet">sweet</option>
+              <option value="hoppy">hoppy</option>
+              <option value="malty">malty</option>
+              <option value="fruity">fruity</option>
+              <option value="spicy">spicy</option>
+              <option value="smokey">smokey</option>
+              <option value="roasted">roasted</option>
+              <option value="silky">silky</option>
+              <option value="mellow">mellow</option>
+              <option value="rich">rich</option>
+              <option value="bold">bold</option>
+              <option value="crisp">crisp</option>
+              <option value="herbaceous">herbaceous</option>
+              <option value="complex">complex</option>
+              <option value="citrus">citrus</option>
+              <option value="other">other</option>
             </select>
             <label>Add flavour profile</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
             <select id='level' name='level'>
               <option value="" disabled selected>Rate this recipe by difficulty</option>
-              <option value="1">beginner</option>
-              <option value="2">intermediate</option>
-              <option value="3">advanced</option>
+              <option value="beginner">beginner</option>
+              <option value="intermediate">intermediate</option>
+              <option value="advanced">advanced</option>
             </select>
             <label>Add brewing level</label>
         </div>
@@ -91,26 +95,26 @@
         <div class="input-field col s12 m6 l6 xl6">
             <select id='region' name='region'>
               <option value="" disabled selected>Choose relevant option</option>
-              <option value="1">Ireland</option>
-              <option value="2">British Isles</option>
-              <option value="3">Western Europe</option>
-              <option value="4">Eastern Europe</option>
-              <option value="1">Central Europe</option>
-              <option value="2">North American</option>
-              <option value="3">Pacific</option>
-              <option value="4">Other</option>
+              <option value="Ireland">Ireland</option>
+              <option value="British Isles">British Isles</option>
+              <option value="Western Europe">Western Europe</option>
+              <option value="Eastern Europe">Eastern Europe</option>
+              <option value="Central Europe">Central Europe</option>
+              <option value="North American">North American</option>
+              <option value="Pacific">Pacific</option>
+              <option value="Other">Other</option>
             </select>
             <label>Add region</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
             <select id='method' name='method' multiple>
               <option value="" disabled selected>Chooose relevant</option>
-              <option value="1">fermentation</option>
-              <option value="2">infusion</option>
-              <option value="3">extraction</option>
-              <option value="4">glycerite</option>
-              <option value="1">decoction</option>
-              <option value="2">other</option>
+              <option value="fermentation">fermentation</option>
+              <option value="infusion">infusion</option>
+              <option value="extraction">extraction</option>
+              <option value="glycerite">glycerite</option>
+              <option value="decoction">decoction</option>
+              <option value="other">other</option>
             </select>
             <label>Add brewing method</label>
         </div>
@@ -119,40 +123,40 @@
         <div class="input-field col s12 m6 l6 xl6">
             <select id='free-from' name='free-from' multiple>
               <option value="" disabled selected>Choose any relevant options</option>
-              <option value="1">gluten-free</option>
-              <option value="2">dairy-free</option>
-              <option value="3">wheat-free</option>
-              <option value="4">egg-free</option>
+              <option value="gluten-free">gluten-free</option>
+              <option value="dairy-free">dairy-free</option>
+              <option value="wheat-free">wheat-free</option>
+              <option value="egg-free">egg-free</option>
             </select>
             <label>Add allergen profile</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
-            <select id='style' name='style' multiple>
+            <select id='properties' name='properties' multiple>
               <option value="" disabled selected>choose ABV for alcoholic brews</option>
-              <option value="1">0% ABV</option>
-              <option value="2">4% ABV</option>
-              <option value="3">4 - 6% ABV</option>
-              <option value="4">6 - 9% ABV</option>
-              <option value="1">9 - 12% ABV</option>
-              <option value="2">12%+ ABV</option>
-              <option value="3">15%+ ABV</option>
-              <option value="4">20%+ ABV</option>
-              <option value="1">40%+ ABV</option>
-              <option value="2">60%+ ABV</option>
+              <option value="0% ABV">0% ABV</option>
+              <option value="4% ABV">4% ABV</option>
+              <option value="4 - 6% ABV">4 - 6% ABV</option>
+              <option value="6 - 9% ABV">6 - 9% ABV</option>
+              <option value="9 - 12% ABV">9 - 12% ABV</option>
+              <option value="12%+ ABV">12%+ ABV</option>
+              <option value="15%+ ABV">15%+ ABV</option>
+              <option value="20%+ ABV">20%+ ABV</option>
+              <option value="40%+ ABV">40%+ ABV</option>
+              <option value="60%+ ABV">60%+ ABV</option>
               <option value="" disabled selected>choose medicinal properties for botanical brews</option>
-              <option value="3">mood elevator</option>
-              <option value="4">relaxant</option>
-              <option value="1">sleep-inducing</option>
-              <option value="2">detox</option>
-              <option value="3">cleanser / tonic</option>
-              <option value="4">anti-inflammatory</option>
-              <option value="4">antacid</option>
-              <option value="1">digestive</option>
-              <option value="2">energy elevator</option>
-              <option value="3">pain-relief</option>
-              <option value="4">immune booster</option>
-              <option value="3">circulation stimulant</option>
-              <option value="4">vitamin booster</option>
+              <option value="mood elevator">mood elevator</option>
+              <option value="relaxant">relaxant</option>
+              <option value="sleep-inducing">sleep-inducing</option>
+              <option value="detox">detox</option>
+              <option value="cleanser / tonic">cleanser / tonic</option>
+              <option value="anti-inflammatory">anti-inflammatory</option>
+              <option value="antacid">antacid</option>
+              <option value="digestive">digestive</option>
+              <option value="energy elevator">energy elevator</option>
+              <option value="pain-relief">pain-relief</option>
+              <option value="immune booster">immune booster</option>
+              <option value="circulation stimulant">circulation stimulant</option>
+              <option value="vitamin booster">vitamin booster</option>
             </select>
             <label>Add brew properties</label>
         </div>

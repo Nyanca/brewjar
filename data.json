@@ -231,3 +231,425 @@
         }
     }
 }
+newest json------
+{
+    "_id": {
+        "$oid": "5bc53e0ce7179a4377fb226e"
+    },
+    "category_1":{
+      "id_alc": {
+            "$oid": "d4a2b4ab7c0aa0388de410d4"
+          },
+      "alcohol":
+              [{
+                    "cat_name": "wine",
+                    "recipe_name": "autumn berries",
+                    "style": "red",
+                    "level": "beginner",
+                    "flavour": "sweet",
+                    "region": "local",
+                    "method": "fermentation",
+                    "properties": "ABV 9%",
+                    "free-from": [
+                        "gluten-free",
+                        "dairy-free"
+                    ],
+                    "recipe": {
+                        "recipe_name": "autumn berries",
+                        "description": "a light and flavoursome desert wine",
+                        "equip_list": [
+                            "scissors",
+                            "saucepan",
+                            "strainer"
+                        ],
+                        "ingredients_list": [
+                            "200g mixed berries",
+                            "200g sugar",
+                            "1 pk wineyeast"
+                        ],
+                        "prep_method": [
+                            "add the berries",
+                            "add the sugar & yeast",
+                            "leave for  week",
+                            "sieve and move to dark",
+                            "leave for 3 weeks, checking regularly",
+                            "enjoy"
+                        ],
+                        "added_by": "c_smyth",
+                        "date_added": "24/02/18",
+                        "upvotes": "25",
+                        "url": "/"
+                    }
+                },
+                {
+                    "cat_name": "wine",
+                    "recipe_name": "summer berry",
+                    "style": "red",
+                    "level": "beginner",
+                    "flavour": "sweet",
+                    "region": "local",
+                    "method": "fermentation",
+                    "properties": "ABV 9%",
+                    "free-from": [
+                        "gluten-free"
+                    ],
+                    "recipe": {
+                        "recipe_name": "summer berry",
+                        "description": "a strong berry taste for the lovers of rich wine",
+                        "equip_list": [
+                            "scissors",
+                            "saucepan",
+                            "strainer"
+                        ],
+                        "ingredients_list": [
+                            "200g mixed berries",
+                            "200g sugar",
+                            "1 pk wineyeast"
+                        ],
+                        "prep_method": [
+                            "add the berries",
+                            "add the sugar & yeast",
+                            "leave for  week",
+                            "sieve and move to a dark place",
+                            "leave for 3 weeks, checking regularly",
+                            "enjoy"
+                        ],
+                        "added_by": "c_jane",
+                        "date_added": "24/09/17",
+                        "upvotes": "60",
+                        "url": "/"
+                    }
+                },
+                {
+                    "cat_name": "beer",
+                    "recipe_name": "summer lager",
+                    "style": "lager",
+                    "level": "intermediate",
+                    "flavour": "sweet",
+                    "region": "n.american",
+                    "method": "top-fermented",
+                    "properties": "ABV 4%",
+                    "free-from": [
+                        "gluten-free"
+                    ],
+                    "recipe": {
+                        "recipe_name": "summer lager",
+                        "description": "sparkling, light & fresh",
+                        "equip_list": [
+                            "scissors",
+                            "saucepan",
+                            "strainer"
+                        ],
+                        "ingredients_list": [
+                            "10 cups water",
+                            "300g southern dry hops",
+                            "25g beer yeast"
+                        ],
+                        "prep_method": [
+                            "pour the water into an airtight container",
+                            "add the yeast",
+                            "roast the hops gently",
+                            "remove from the heat",
+                            "leave to steep for 30 minutes",
+                            "close the airlock, and keep checking"
+                        ],
+                        "added_by": "allie smyth",
+                        "date_added": "02/10/17",
+                        "upvotes": "25",
+                        "url": "/"
+                    }
+                }],
+        "category_2":{
+         "id_bot": {
+            "$oid": "5a817e3894647058ab4e43ca"
+          },
+           "botanical":[
+                {
+                    "cat_name": "tea",
+                    "recipe_name": "lavender hush",
+                    "style": "ayurvedic",
+                    "level": "beginner",
+                    "flavour": "floral",
+                    "region": "ireland",
+                    "method": "infusion",
+                    "properties": "relaxant",
+                    "free-from": [
+                        "gluten-free"
+                    ],
+                    "recipe": {
+                        "recipe_name": "lavender hush",
+                        "description": "an easy-to-make floral nighttime tea",
+                        "equip_list": [
+                            "scissors",
+                            "saucepan",
+                            "strainer"
+                        ],
+                        "ingredients_list": [
+                            "water",
+                            "lavender",
+                            "rose petals"
+                        ],
+                        "prep_method": [
+                            "heat the water gently",
+                            "add the flowers",
+                            "allow the lavender petals to infuse slowly",
+                            "remove from the heat",
+                            "leave to steep for 30 minutes",
+                            "enjoy"
+                        ],
+                        "added_by": "c_smyth",
+                        "date_added": "24/12/18",
+                        "upvotes": "25",
+                        "url": "/"
+                    }
+                },
+                {
+                    "cat_name": "kombucha",
+                    "recipe_name": "raspberry blend",
+                    "style": "medicinal",
+                    "level": "beginner",
+                    "flavour": "tart",
+                    "region": "ireland",
+                    "method": "fermentation",
+                    "properties": "digestive tonic",
+                    "free-from": [
+                        "gluten-free"
+                    ],
+                    "recipe": {
+                        "recipe_name": "original kombucha",
+                        "description": "full flavour & wholesome & great for the gut",
+                        "equip_list": [
+                            "scissors",
+                            "saucepan",
+                            "strainer"
+                        ],
+                        "ingredients_list": [
+                            "water",
+                            "loose chamomile tea",
+                            "sugar",
+                            "yeast"
+                        ],
+                        "prep_method": [
+                            "heat the water gently",
+                            "infuse the loose chamomile tea for 2 hrs",
+                            "pour the mixture into an airtight jar",
+                            "leave for 2 weeks",
+                            "enjoy"
+                        ],
+                        "added_by": "c_smyth",
+                        "date_added": "24/12/18",
+                        "upvotes": "25",
+                        "url": "/"
+                    }
+                }]
+        }
+    }
+}
+---------other json
+{
+    "_id": {
+        "$oid": "5bc53e0ce7179a4377fb226e"
+    },
+    "category": {
+        "alcohol": [[
+            {
+                "cat_name": "wine",
+                "recipe_name": "autumn berries",
+                "style": "red",
+                "level": "beginner",
+                "flavour": "sweet",
+                "region": "local",
+                "method": "fermentation",
+                "properties": "ABV 9%",
+                "free-from": [
+                    "gluten-free",
+                    "dairy-free"
+                ],
+                "recipe": {
+                    "recipe_name": "autumn berries",
+                    "description": "a light and flavoursome desert wine",
+                    "equip_list": [
+                        "scissors",
+                        "saucepan",
+                        "strainer"
+                    ],
+                    "ingredients_list": [
+                        "200g mixed berries",
+                        "200g sugar",
+                        "1 pk wineyeast"
+                    ],
+                    "prep_method": [
+                        "add the berries",
+                        "add the sugar & yeast",
+                        "leave for  week",
+                        "sieve and move to dark",
+                        "leave for 3 weeks, checking regularly",
+                        "enjoy"
+                    ],
+                    "added_by": "c_smyth",
+                    "date_added": "24/02/18",
+                    "upvotes": "25",
+                    "url": "/"
+                }
+            }],
+            [{
+                "cat_name": "wine",
+                "recipe_name": "summer berry",
+                "style": "red",
+                "level": "beginner",
+                "flavour": "sweet",
+                "region": "local",
+                "method": "fermentation",
+                "properties": "ABV 9%",
+                "free-from": [
+                    "gluten-free"
+                ],
+                "recipe": {
+                    "recipe_name": "summer berry",
+                    "description": "a strong berry taste for the lovers of rich wine",
+                    "equip_list": [
+                        "scissors",
+                        "saucepan",
+                        "strainer"
+                    ],
+                    "ingredients_list": [
+                        "200g mixed berries",
+                        "200g sugar",
+                        "1 pk wineyeast"
+                    ],
+                    "prep_method": [
+                        "add the berries",
+                        "add the sugar & yeast",
+                        "leave for  week",
+                        "sieve and move to a dark place",
+                        "leave for 3 weeks, checking regularly",
+                        "enjoy"
+                    ],
+                    "added_by": "c_jane",
+                    "date_added": "24/09/17",
+                    "upvotes": "60",
+                    "url": "/"
+                }
+            }],
+            [{
+                "cat_name": "beer",
+                "recipe_name": "summer lager",
+                "style": "lager",
+                "level": "intermediate",
+                "flavour": "sweet",
+                "region": "n.american",
+                "method": "top-fermented",
+                "properties": "ABV 4%",
+                "free-from": [
+                    "gluten-free"
+                ],
+                "recipe": {
+                    "recipe_name": "summer lager",
+                    "description": "sparkling, light & fresh",
+                    "equip_list": [
+                        "scissors",
+                        "saucepan",
+                        "strainer"
+                    ],
+                    "ingredients_list": [
+                        "10 cups water",
+                        "300g southern dry hops",
+                        "25g beer yeast"
+                    ],
+                    "prep_method": [
+                        "pour the water into an airtight container",
+                        "add the yeast",
+                        "roast the hops gently",
+                        "remove from the heat",
+                        "leave to steep for 30 minutes",
+                        "close the airlock, and keep checking"
+                    ],
+                    "added_by": "allie smyth",
+                    "date_added": "02/10/17",
+                    "upvotes": "25",
+                    "url": "/"
+                }
+            }
+        ]],
+        "botanical": [[
+            {
+                "cat_name": "tea",
+                "recipe_name": "lavender hush",
+                "style": "ayurvedic",
+                "level": "beginner",
+                "flavour": "floral",
+                "region": "ireland",
+                "method": "infusion",
+                "properties": "relaxant",
+                "free-from": [
+                    "gluten-free"
+                ],
+                "recipe": {
+                    "recipe_name": "lavender hush",
+                    "description": "an easy-to-make floral nighttime tea",
+                    "equip_list": [
+                        "scissors",
+                        "saucepan",
+                        "strainer"
+                    ],
+                    "ingredients_list": [
+                        "water",
+                        "lavender",
+                        "rose petals"
+                    ],
+                    "prep_method": [
+                        "heat the water gently",
+                        "add the flowers",
+                        "allow the lavender petals to infuse slowly",
+                        "remove from the heat",
+                        "leave to steep for 30 minutes",
+                        "enjoy"
+                    ],
+                    "added_by": "c_smyth",
+                    "date_added": "24/12/18",
+                    "upvotes": "25",
+                    "url": "/"
+                }
+            }],
+            [{
+                "cat_name": "kombucha",
+                "recipe_name": "raspberry blend",
+                "style": "medicinal",
+                "level": "beginner",
+                "flavour": "tart",
+                "region": "ireland",
+                "method": "fermentation",
+                "properties": "digestive tonic",
+                "free-from": [
+                    "gluten-free"
+                ],
+                "recipe": {
+                    "recipe_name": "original kombucha",
+                    "description": "full flavour & wholesome & great for the gut",
+                    "equip_list": [
+                        "scissors",
+                        "saucepan",
+                        "strainer"
+                    ],
+                    "ingredients_list": [
+                        "water",
+                        "loose chamomile tea",
+                        "sugar",
+                        "yeast"
+                    ],
+                    "prep_method": [
+                        "heat the water gently",
+                        "infuse the loose chamomile tea for 2 hrs",
+                        "pour the mixture into an airtight jar",
+                        "leave for 2 weeks",
+                        "enjoy"
+                    ],
+                    "added_by": "c_smyth",
+                    "date_added": "24/12/18",
+                    "upvotes": "25",
+                    "url": "/"
+                }
+            }
+        ]]
+    }
+}
