@@ -72,33 +72,8 @@ def get_filter_results():
     # # level.append(level)
     
     filter_results = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
-    f = str(list(filter_results))
-    
-    
-    # filter_results = allbrews.find({
-    #     "$and": [
-    #      {"recipe_profile.cat_name":brew_types},
-    #      {"recipe_profile.level":level},
-    #     ]
-    # })
-    
-    
 
-    # {"recipe_profile.free-from": {$eq: stufffree}}
-    # # assign index to relevant search targets for faster search
-    # allbrews.create_index([('cat_name', 'text')])
-    # allbrews.create_index([('level', 'text')])
-    # allbrews.create_index([('free-from', 'text')]
-        
-    # def filtermatch(brew_choices):
-    #     if (brew_choices in all_brews):
-    #         return True
-    #     else:
-    #         return False
-        
-    # filter_results = filter(filtermatch, brew_types)
-   
-    return render_template('brewresults.html', f=f)
+    return render_template('brewresults.html', filter_results=filter_results)
     
 # @app.route('/success')
 # def success():
