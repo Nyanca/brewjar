@@ -72,8 +72,10 @@ def get_filter_results():
     # # level.append(level)
     
     filter_results = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
+    
+    f = filter_results.to_dict()
 
-    return render_template('brewresults.html', filter_results=filter_results)
+    return render_template('brewresults.html', f=f)
     
 # @app.route('/success')
 # def success():
