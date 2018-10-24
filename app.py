@@ -1,6 +1,7 @@
 import os
 import json
 from bson import json_util
+from pymongo import MongoClient
 from flask import Flask, render_template, redirect, request, url_for, jsonify
 from flask_pymongo import PyMongo, ObjectId
 from flask_bcrypt import Bcrypt
@@ -20,10 +21,10 @@ def index():
 @app.route('/create-account')
 def add_user():
     
-#     if request.method == ['POST']:
-#         hashed_password = bcrypt.generate_password_hash(request.form['password']).decode(utf-8)
-#         user = User(username=request.form['username'], email=request.form['email'], password=hashed_password)
-#         mongo.db.user.insert_one(user)
+    # if request.method == ['POST']:
+    #     hashed_password = bcrypt.generate_password_hash(request.form['password']).decode(utf-8)
+    #     user = User(username=request.form['username'], email=request.form['email'], password=hashed_password)
+    #     mongo.db.user.insert_one(user)
     
     return render_template('createaccount.html')
 
@@ -53,7 +54,7 @@ def choose_a_brew():
         
 @app.route('/brew-results', methods=['GET','POST'])
 def get_filter_results():
-    #get DB collection 
+    # get DB collection 
     allbrews = mongo.db.brew
     
     # # initialize empty list to store form data
@@ -71,15 +72,19 @@ def get_filter_results():
     # stufffree_list.append(stufffree)
     # # level.append(level)
     
-    filter_results = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
+    filter_data = allbrews.find()
+    # filter_data = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
     
-    f = filter_results.to_dict()
+    # f = []
+    
+    # for brew in filter_data:
+    #     f.append(brew)
 
-    return render_template('brewresults.html', f=f)
+    return render_template('brewresults.html', filter_data=filter_data, level=level, brew_types=brew_types)
     
-# @app.route('/success')
-# def success():
-#     return render_template('success.html')
+@app.route('/success')
+def success():
+    return render_template('success.html')
 
 @app.route('/return_all')
 def return_all():
