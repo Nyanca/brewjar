@@ -11,28 +11,37 @@
 </head>
 
 <body>
-    <div>
-        <header class='header'>
-            <div class='row left'>
-                <div class='col s6 m6 l6 xl 6'><a href="{{url_for ('home')}}"><img src='images/brewjar_jar.png' alt='Brewjar'></a></div>
+    <header class='header'>
+        <div class='row left'>
+            <div class='col s6 m6 l6 xl 6'>
+                <a href="{{url_for ('home')}}">
+                    <div class="row">
+                        <div class="col s6 m4 l4 xl4">
+                            <img class='responsive-img circle' src='{{ url_for("static", filename="images/brewjar_jar.png") }}' alt="Brewjar Icon">
+                            </img>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="row right">
-                <div class='col s6 m6 l6 xl 6 icon right'><i class="fas fa-user-circle fa-3x"></i><br>{{ username }}</div>
-            </div>
-        </header>
-    </div>
-    <div class=container>
-        {% block content %} {% endblock %}
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('select').formSelect();
-            $('.sidenav').sidenav();
-        });
-    </script>
-    <footer class='footerstyle'><strong>Brewjar App 2018&copy</strong> | a project for CI Dublin</footer>
+        </div>
+        <div class="row right">
+            <div class='col s6 m6 l6 xl 6 icon right'><i class="fas fa-user-circle fa-3x"></i><br>{{ username }}</div>
+        </div>
+    </header>
+    <main>
+        <div class=container>
+            {% block content %} {% endblock %}
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('select').formSelect();
+                $('.sidenav').sidenav();
+            });
+        </script>
+    </main>
+    <footer class='footerstyle footer'><strong>Brewjar App 2018&copy</strong> | a project for CI Dublin</footer>
 </body>
 
 </html>

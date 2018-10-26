@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="row sitefont">
+    <div class="col xs12 m12 l12 xl12">
+    {% for k, v in recipe_item.items() %}
+    {% if k == 'author' %}
+    <p>Recipe By: {{ v | title }}</p>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+
+
+<div class="row greybackground sitefont">
+    {% for k, v in recipe_item.items() %}
+    {% if k == "author" or k == "recipe_profile" %}
+    <div class="col xs12 m12 l12 xl12">
+        <strong><h4>{{ v.recipe_name | title }}</h4></strong>
+        <h6>{{ v.recipe_description }}</h6>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<hr>
+<div class="row greybackground sitefont">
+    {% for k, v in recipe_item.items() %}
+    {% if k == "author" or k == "recipe_profile" %}
+    <div class="col xs6 m4 l4 xl4">
+        {% for a in v.recipe %}
+        <li> {{ a }}</li>
+        {% endfor %}
+    </div>
+</div>
+    {% endif %}
+    {% endfor %}
+
+{% endblock %}

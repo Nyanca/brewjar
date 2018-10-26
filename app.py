@@ -6,6 +6,7 @@ from flask import Flask, render_template, redirect, request, url_for, jsonify
 from flask_pymongo import PyMongo, ObjectId
 from flask_bcrypt import Bcrypt
 
+
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'brewjar'
@@ -71,10 +72,10 @@ def get_filter_results():
     # brew_choice_list.append(brew_types)
     # stufffree_list.append(stufffree)
     # # level.append(level)
-    
     filter_data = allbrews.find()
-    # filter_data = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
     
+    # filter_data = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
+
     # f = []
     
     # for brew in filter_data:
@@ -85,65 +86,87 @@ def get_filter_results():
 @app.route('/success')
 def success():
     return render_template('success.html')
-
-@app.route('/return_all')
-def return_all():
-    db = mongo.db.brew;
-
-    documents = db.find({"recipe_profile.cat_name":"beer"})
-    
-    
-    # ({"category_1.id_alc": ObjectId("d4a2b4ab7c0aa0388de410d4")},{"category_1.alcohol": {"$elemMatch": {"level":'beginner', "cat_name":"wine", "free-from":"gluten-free"}})]
-    return json_util.dumps({'cursor': documents}) 
     
 @app.route('/add-profile')
 def add_profile():
+    # allows the user to add a new recipe profile via form on addBrewProfile.html
     return render_template('addbrewProfile.html')
 
 @app.route('/add-recipe')
 def add_recipe():
+     # allows the user to add a new recipe via form on addBrewRecipe.html
     return render_template('addbrewRecipe.html')
 
 @app.route('/my-brews') 
 def my_brews():
     return render_template('mybrews.html')
     
-@app.route('/insert-brew', methods=['POST'])
+# @app.route('/add_vote', methods=['GET','POST'])
+# def add_vote():
+#     recipe_id = request.form['recipe_id']
+#     return render_template('fullview.html', recipe_id=recipe_id)
+    
+@app.route('/expand_result', methods=['GET','POST'])
+# render template fullview.html 
+def expand_result():
+    recipe_id = request.form.get('recipe_id')
+    brew_db = mongo.db.brew
+    recipe_item = brew_db.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('fullview.html', recipe_item=recipe_item)
+    
+@app.route('/insert-brew', methods=['GET','POST'])
 def insert_brew():
     brews = mongo.db.brew
     
-    # return form field submissions from addBrewProfile
-
-    recipe_name = request.form['recipe_name']
+    # return form field submissions from addBrewProfile and addBrewRecipe
     author_name = request.form['author_name']
-    recipe_description = request.form['recipe_description']
     category_name = request.form['cat-name']
+    recipe_name = request.form['recipe_name']
+    recipe_description = request.form['recipe_description']
     style = request.form['style']
+    level = request.form['level']
     flavour = request.form['flavour']
-    # level = request.form['level']
-    # region = request.form['region']
+    region = request.form['region']
     method = request.form['method']
-    freefrom = request.form['free-from']
     properties = request.form['properties']
+    freefrom = request.form['free-from']
+    # equip_list = request.form['equip_list']
+    # ingredients_list = request.form['ingredients_list']
+    # prep_method = request.form['prep_method']
+   
+    
+    # need help adding recipe object with arrays to collection and help with converting arrays entries into single string values
 
     # add user input to the brew collection
     
-    # brews.insert_one({"_id": ObjectId("5bc53e0ce7179a4377fb226e")},
-    # {"$addToSet": 
-    #     {"category.alcohol":
-    #         {
-    #         "cat_name": category_name,
-    #         "recipe_name": recipe_name,
-    #         "style": style,
-    #         # "level": level,
-    #         "flavour": flavour,
-    #         # "region": region,
-    #         "method": method,
-    #         "properties": properties,
-    #         "free-from": freefrom
-    #         }
-    #     }
-    # })
+    brews.insert_one({   
+            "author_name": author_name,
+            "cat_name": category_name,
+            "recipe_name": recipe_name,
+            "recipe_description": recipe_description,
+            "style": style,
+            "level": level,
+            "flavour": flavour,
+            "region": region,
+            "method": method,
+            "properties": properties,
+            "free-from": freefrom,
+            # "recipe":{"$push":
+            #             {
+            #                 "equip_list": {"$each": [equip_list]}
+            #             }
+            #         },
+            #         {"$push": 
+            #             {
+            #               "ingredients_list": {"$each": [ingredients_list]}
+            #             }
+            #         },
+            #         {"$push":
+            #             {
+            #               "prep_method": {"$each": [prep_method]}
+            #             }
+            #         }
+    })
     
     # brews.insert_one(request.form.to_dict())
     return render_template('success.html')

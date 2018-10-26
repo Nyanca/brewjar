@@ -38,6 +38,11 @@
   padding: 20px;
   text-align: center; }
 
+.footer {
+  display: flex;
+  position: absolute;
+  width: 100%; }
+
 .sitefont {
   font-family: "Quicksand", sans-serif; }
 
@@ -48,6 +53,9 @@
   background-color: #FDFCFC;
   padding: 50px;
   margin-bottom: 10px; }
+
+.col.s12 > .btn {
+  width: 50%; }
 
 .left {
   float: left;
@@ -62,6 +70,15 @@
 
 .spacer {
   padding: 5px; }
+
+.half-width {
+  width: 50%; }
+
+.medium-padding-top {
+  margin: 50px; }
+
+.light-padding-top {
+  padding-top: 20px; }
 
 .greybackground {
   background-color: #F2F3F3;

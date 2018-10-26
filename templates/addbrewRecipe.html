@@ -1,31 +1,27 @@
 {% extends 'base.html' %}{% block content %}
+<div class="row"></div>
+<div class="row"></div>
 <h4 class='brewjarfont center-text'>Add Brew Recipe</h4>
 
 <form action="{{url_for ('insert_brew')}}" method="POST" class="col s12 sitefont greybackground">
     <div class="row">
-        <div class="input-field col s12 m6 l6 xl6">
+        <div class="input-field col s12 m12 l12 xl12">
             <i class="material-icons prefix">subject</i>
-            <textarea id="equip_list" name="equip_list" type="text" class="validate"></textarea>
+            <textarea id="equip_list" name="equip_list" type="text" class="validate">
+            </textarea>
             <label for="icon_prefix">Add equipment list</label>
         </div>
-        <div class="input-field col s12 m6 l6 xl6">
+        <div class="input-field col s12 m12 l12 xl12">
             <i class="material-icons prefix">subject</i>
             <textarea id="ingredients_list" name="ingredients_list" type="text" class="validate"></textarea>
             <label for="icon_prefix">Add ingredients list</label>
         </div>
     </div>
     <div class='row'>
-        <div class="input-field col s12">
-            <i class="material-icons prefix">phone</i>
-            <input id="prep-method" name="prep-method" type="tel" class="validate">
+        <div class="input-field col s12 m12 l12 xl12">
+            <i class="material-icons prefix">subject</i>
+            <textarea id="prep-method" name="prep-method" type="tel" class="validate"></textarea> 
             <label for="icon_telephone">Add preparation instruction</label>
-        </div>
-    </div>
-    <div class='row'>
-        <div class="input-field col s12">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="added_by" name="added_by" type="tel" class="validate">
-            <label for="icon_telephone">Add your user name</label>
         </div>
     </div>
     <div class='row center-text'>

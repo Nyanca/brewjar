@@ -1,59 +1,64 @@
+
 //fonts
-.sitefont{
+.sitefont {
     font-family: $sitefont;
 }
 
-.brewjarfont{
+.brewjarfont {
     font-family: $brewjarfont;
 }
 
 //header
-.header{
+.header {
     background-color: $white;
     padding: 50px;
     margin-bottom: 10px;
 }
 
 //icons & images
-.icon{
+.icon {
     @extend %icon;
 }
 
 //buttons
-.col.s12 > .btn{
+.col.s12>.btn {
     width: 50%;
 }
 
 //alignment, padding & margins
-.left{
+.left {
     float: left;
     padding-left: 10px;
 }
 
-.right{
+.right {
     float: right;
     padding-right: 10px;
 }
 
-.center-text{
+.center-text {
     text-align: center;
 }
 
-.spacer{
-    padding:5px;
+.spacer {
+    padding: 5px;
 }
 
-.half-width{
-    width:50%;
+.half-width {
+    width: 50%;
 }
 
-.medium-padding-top{
+.medium-padding-top {
     margin: 50px;
 }
 
+.light-padding-top {
+    padding-top: 20px;
+}
+
 //backgrounds
-.greybackground{
-   background-color: $grey; 
-   padding: 20px;
-   margin: 20px;
+.greybackground {
+    background-color: $grey;
+    padding: 20px;
+    margin: 20px;
 }

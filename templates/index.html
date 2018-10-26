@@ -12,39 +12,27 @@
 
 <body>
     <!--header------------------------------>
-    <div class="row">
-        <div class="col s12 m12 lg12 xl12 medium-padding-top">
-            <h3 class='brewjarfont center-text'>Brewjar</h3>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
+    <div class="row center-text">
         <div class="col s12 m12 lg12 xl12">
-            <h5 class='center-text'>easy brewing</h5>
+            <h3 class='brewjarfont'>Brewjar</h3>
+        </div>
+        <div class="col s12 m12 lg12 xl12">
+            <p>EASY BREWING</p>
         </div>
     </div>
-
-    <!--buttons----------------------------->
+     <hr>
+    <!--brew icon image large & buttons-------------------------------------->
     <div class="row center-text sitefont">
-        <div class="col s12 m12 lg12 xl12">
-            <div class="row">
-                <div class="col s12 m12 lg12 xl12">
-                    <a href="{{url_for ('add_user')}}"><button class='mainbutton'>Get Started</button></a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m12 lg12 xl12">
-                    <a href="{{url_for ('signin')}}"><button class='mainbutton'>Sign-in</button></a>
-                </div>
-            </div>
+        <div class="col s4 m4 lg3 xl3 light-padding-top">
+            <a href="{{url_for ('add_user')}}"><button class='mainbutton'>Get Started</button></a>
         </div>
-        <br>
-        <!--brew icon image large-------------------------------------->
-        <div class="row">
-            <div class="col s12 m12 lg12 xl12">
-                <img src='/images/brew_jar.png' alt='brewjar-icon'>
-            </div>
+        <div class="col s6 m6 lg6 xl6">
+            <img class='responsive-img circle' src='{{ url_for("static", filename="images/brewjar_jar.png") }}' alt="Brewjar Icon"></img>
         </div>
+        <div class="col s4 m4 lg3 xl3 light-padding-top">
+            <a href="{{url_for ('signin')}}"><button class='mainbutton'>Sign-in</button></a>
+        </div>
+    </div>
 </body>
 
 </html>
