@@ -1,10 +1,11 @@
 import os
 import json
+import bcrypt
 from bson import json_util
 from pymongo import MongoClient
-from flask import Flask, render_template, redirect, request, url_for, jsonify
+from flask import Flask, render_template, redirect, request, url_for, jsonify, session, flash, g
 from flask_pymongo import PyMongo, ObjectId
-from flask_bcrypt import Bcrypt
+from functools import wraps
 
 
 app = Flask(__name__)
@@ -13,41 +14,68 @@ app.config['MONGO_DBNAME'] = 'brewjar'
 app.config['MONGO_URI'] = 'mongodb://admin:99Prism@ds149732.mlab.com:49732/brewjar'
 
 mongo = PyMongo(app)
-bcrypt = Bcrypt(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/create-account')
-def add_user():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    users = mongo.db.user
+    password = request.form.get('password')
+    username = request.form.get('username')
+    existing_user = users.find_one({'username': username})
     
-    # if request.method == ['POST']:
-    #     hashed_password = bcrypt.generate_password_hash(request.form['password']).decode(utf-8)
-    #     user = User(username=request.form['username'], email=request.form['email'], password=hashed_password)
-    #     mongo.db.user.insert_one(user)
-    
-    return render_template('createaccount.html')
-
-@app.route('/sign-in')
-def signin():
-    # _user = mongo.db.user.findOne()
-    # valid_user = [user for user in _user]
-    
-    # if request.method == 'POST':
-    #     error = None
-    #     if request.form['email'] != 'admin' or request.form['password'] != 'admin':
-    #         error = 'The username and password do not match. Try again, or create an account'
-    #     else:
-    #         return redirect(url_for('home'))
+    if request.method == 'POST':
+        if existing_user is None:
+            hashPw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            users.insert({'username': username, 'password': hashPw, 'mybrews':[]})
+            session['username'] = username
+            return redirect(url_for('login'))
             
-    return render_template('signin.html')
+        else:
+            flash('*That username already exists')
+            return render_template('register.html')
 
+    return render_template('register.html', username=username, password=password)
+    
+@app.route('/log-in', methods=['POST', 'GET'])
+def login():
+    users = mongo.db.user
+    username = request.form.get('username')
+    password = request.form.get('password')
+    login_user = users.find_one({'username': username})
+    
+    session['user'] = username
+    
+    # passwords aren't being stored porperly & will need encode when stored properly
+    if login_user:
+        if bcrypt.hashpw(password.encode('utf-8'), login_user['password']) == login_user['password']:
+            user_name = username
+            return render_template('home.html', username=user_name)
+    else:
+        flash('*invalid login details')
+        return render_template('login.html')
+            
+    return render_template('login.html')
+
+# @app.route('/get_user')
+# # get the user form the session if user exists & login automatically
+# def get_user():
+#     if 'username' in session:
+#         return session['username'] and redirect('home.html')
+        
+#     return redirect('login.html')
+
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
+    
 @app.route('/home')
 def home():
-    collection = mongo.db.brew
-    all_brews = collection.find_one()
-    return render_template('home.html', all_brews=all_brews)
+    return render_template('home.html')
 
 @app.route('/choose-a-brew')
 def choose_a_brew():
@@ -112,8 +140,31 @@ def expand_result():
     recipe_id = request.form.get('recipe_id')
     brew_db = mongo.db.brew
     recipe_item = brew_db.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('fullview.html', recipe_item=recipe_item)
     
+    return render_template('fullview.html', recipe_item=recipe_item, recipe_id=recipe_id)
+
+@app.route('/add_to_myBrews', methods=['GET','POST'])
+def add_to_myBrews():
+    # get recipe id
+    myBrew_id = request.form.get('myBrew_id')
+    # get database collections
+    user = mongo.db.user
+    brew_db = mongo.db.brew
+    # get recipe to add to user collection myBrews
+    myBrews_entry = brew_db.find_one({"_id": ObjectId(myBrew_id)})
+    # get user
+    session_user = g.user
+    
+    # enter recipe into user's recipe dashboard myBrews 
+    user.findAndModify({
+        "query": {'username': session_user},
+      "$addToSet":{"mybrews": [{"_id": ObjectId(myBrew_id)}] } 
+    }) 
+                    
+    #insert the above item into the user collection     
+    # work on this and figure how to add recipe to user dashboard, maybe store all id's in a list to access them and iterate through each list item
+    return render_template('success.html', myBrews_entry = myBrews_entry, myBrew_id=myBrew_id)
+        
 @app.route('/insert-brew', methods=['GET','POST'])
 def insert_brew():
     brews = mongo.db.brew
@@ -171,7 +222,14 @@ def insert_brew():
     # brews.insert_one(request.form.to_dict())
     return render_template('success.html')
 
+@app.route('/add_to_my_brews', methods=['GET', 'POST'])
+def add_recipe_to_user_dashboard():
+    a = request.form.get('idid')
+    return render_template('success.html', a=a)
+
+
 if __name__ == '__main__':
+    app.secret_key = b'\xeb\xd3\x0c\x89P\xed.\x15~\xa6\xc6\xad;\x16\x8fH'
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)
