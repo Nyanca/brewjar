@@ -1,11 +1,12 @@
 {% extends 'base.html' %}{% block content %}
 
-<h4 class='brewjarfont center-text'>Hi, {{ username }} </h4>
-<!--<p>#testing-->
-<!--    {% for a in all_brews %}-->
-<!--    {{ a }}-->
-<!--    {% endfor %}-->
-<!--</p>-->
+
+<div class="row">
+    <div class="col s12 m12 l12 x12">
+      <h6 class='brewjarfont center-text'>Hi {{ username | title}}</h6>  
+    </div>
+</div>
+
 <div class='greybackground'>
     <div class='row center'>
         <div class='col s12 m6 l6 xl6 bigbutton'>

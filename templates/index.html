@@ -24,13 +24,13 @@
     <!--brew icon image large & buttons-------------------------------------->
     <div class="row center-text sitefont">
         <div class="col s4 m4 lg3 xl3 light-padding-top">
-            <a href="{{url_for ('add_user')}}"><button class='mainbutton'>Get Started</button></a>
+            <a href="{{url_for ('register')}}"><button class='mainbutton'>Get Started</button></a>
         </div>
         <div class="col s6 m6 lg6 xl6">
             <img class='responsive-img circle' src='{{ url_for("static", filename="images/brewjar_jar.png") }}' alt="Brewjar Icon"></img>
         </div>
         <div class="col s4 m4 lg3 xl3 light-padding-top">
-            <a href="{{url_for ('signin')}}"><button class='mainbutton'>Sign-in</button></a>
+            <a href="{{url_for ('login')}}"><button class='mainbutton'>Sign-in</button></a>
         </div>
     </div>
 </body>
