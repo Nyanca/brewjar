@@ -36,4 +36,15 @@
     </div>
 </div>
 
- {% endblock %}
+{% for k, v in myBrews_entry.items() %} 
+
+<ul class="collapsible">
+    <li>
+      <div class="collapsible-header greybackground left sitefont"><i class="material-icons">filter_drama</i>{{ v.recipe_name | title }}</div>
+      <div class="collapsible-body greybackground left sitefont"><span>{{ v.recipe_description }}</span>
+      <p>Votes: {{ v.upvotes }}</p>
+    </li>
+ </ul>
+        
+
+{% endfor %} {% endblock %}

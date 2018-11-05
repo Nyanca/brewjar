@@ -3,13 +3,35 @@
 {% block content %}
 
 <div class="row sitefont">
-    <div class="col xs12 m12 l12 xl12">
+    <div class="col s8 m8 l8 xl8">
     {% for k, v in recipe_item.items() %}
     {% if k == 'author' %}
     <p>Recipe By: {{ v | title }}</p>
     {% endif %}
     {% endfor %}
     </div>
+    
+     <div class="col s4 m4 l4 xl4 icon">
+        <form action='{{ url_for("add_to_myBrews") }}' method='POST'>
+            <input type="hidden" id="myBrew_id" name="myBrew_id" value="{{ recipe_id }}"/>
+            <input type='submit'/><i class="material-icons icon">
+            add_circle</i>
+        </form>
+    </div>
+ 
+   {# <div class="col s4 m4 l4 xl4 icon">
+        <form action='{{ url_for("/") }}' methods='POST'>
+            <a href='{{ url_for("/") }}'>
+                {% for k, v in recipe_item.items() %}
+                {% if k == '_id' %}
+                <input type='submit'><i class="material-icons icon">
+                add_circle</i>
+                <input type="hidden" id="myBrews_id" value="{{ v }}"/>
+                {% endif %}
+                {% endfor %}
+            </a>
+        </form>
+    </div> get id to add recipe to user dashboard, maybe js onclick with nested function in expand_result#}
 </div>
 
 
@@ -30,7 +52,7 @@
     {% if k == "author" or k == "recipe_profile" %}
     <div class="col xs6 m4 l4 xl4">
         {% for a in v.recipe %}
-        <li> {{ a }}</li>
+        <li class="{{loop.cycle (odd, even)}}">{{ a }}</li>
         {% endfor %}
     </div>
 </div>
