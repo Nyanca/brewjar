@@ -156,10 +156,15 @@ def add_to_myBrews():
     session_user = g.user
     
     # enter recipe into user's recipe dashboard myBrews 
-    user.findAndModify({
-        "query": {'username': session_user},
-      "$addToSet":{"mybrews": [{"_id": ObjectId(myBrew_id)}] } 
-    }) 
+    # user.find_and_modify({
+    #     "query": {'username': session_user},
+    #     "sort": { 'recipe_profile.cat_name': 1 },
+    #     "update":{"$push":{"mybrews": {"_id": ObjectId(myBrew_id)}}} 
+    # }) 
+    
+    user.update({'username': session_user},
+        {"$addToSet":{"mybrews": {"_id": ObjectId(myBrew_id)}} }
+    ) 
                     
     #insert the above item into the user collection     
     # work on this and figure how to add recipe to user dashboard, maybe store all id's in a list to access them and iterate through each list item
