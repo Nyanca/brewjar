@@ -1,5 +1,5 @@
  {% extends 'base.html' %}{% block content %}
- 
+
 <!---navigation--->
 
 <ul id="slide-out" class="sidenav">
@@ -36,15 +36,34 @@
     </div>
 </div>
 
-{% for k, v in myBrews_entry.items() %} 
+{% for brew in recipe_doc %} {% for k, v in brew.items() %} {% if k == 'recipe_profile' %}
 
-<ul class="collapsible">
-    <li>
-      <div class="collapsible-header greybackground left sitefont"><i class="material-icons">filter_drama</i>{{ v.recipe_name | title }}</div>
-      <div class="collapsible-body greybackground left sitefont"><span>{{ v.recipe_description }}</span>
-      <p>Votes: {{ v.upvotes }}</p>
-    </li>
- </ul>
-        
+<div class="row">
+    <div class="col s12 m12 l6 xl6">
+        <ul class="collapsible popout valign-wrapper">
+            <li>
+                <div class="collapsible-header greybackground sitefont"><i class="material-icons">favorite_border</i>
+                    <h5>{{ v.recipe_name | title }}</h5>
+                </div>
+                <div class="collapsible-body greybackground sitefont"><span><strong>{{ v.recipe_description[0]| upper }}{{ v.recipe_description[1:] }}</strong>
+                </span> 
+                    <h6 class='sitefont'>Equipment List</h6>
+                    {% for equip_list in v.recipe.equip_list %}
+                        <p> {{ loop.index }}{{ (". ") + equip_list[0] | upper }}{{equip_list[1:] }}</p>
+                    {% endfor %} 
+                    <h6>Ingredients</h6>
+                    {% for ingredients_list in v.recipe.ingredients_list %}
+                        <p> {{ loop.index}}{{ (". ") + ingredients_list }}</p>
+                    {% endfor %} 
+                    <h6>Preparation</h6>
+                    {% for preparation in v.recipe.prep_method %}
+                        <p> {{ loop.index }}{{ (". ") + preparation[0] | upper }}{{ preparation[1:]}}</p>
+                    {% endfor %} 
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 
-{% endfor %} {% endblock %}
+{% endif %} {% endfor %} {% endfor %} {% endblock %}
+ 
