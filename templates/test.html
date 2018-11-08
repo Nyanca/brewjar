@@ -1,0 +1,13 @@
+
+
+{% for brew in recipe_doc %}
+{% for k, v in brew.items() %}
+{% if k == "recipe_profile" %}
+{% for recipe_list in v.recipe.equip_list %}
+
+{{ recipe_list }}
+
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endfor %}
