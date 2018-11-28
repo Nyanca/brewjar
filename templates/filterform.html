@@ -5,7 +5,7 @@
 <form action="{{url_for ('get_filter_results')}}" method="POST" class="col s12 sitefont greybackground">
     <div class='row'>
         <div class="input-field col s12">
-            <select id='brew-type' name='brew-type' multiple >
+            <select id='brew-type' name='brew-type'>
               <option value="" disabled selected>Alcohol or Botanical?</option>
               <option value="beer">beer</option>
               <option value="wine">wine</option>
@@ -21,7 +21,7 @@
     </div>
     <div class='row'>
         <div class="input-field col s12">
-            <select id='stuff-free' name='stuff-free' multiple>
+            <select id='stuff-free' name='stuff-free'>
               <option value="" disabled selected>Stuff-free?</option>
               <option value="gluten-free">gluten-free</option>
               <option value="dairy-free">dairy-free</option>
