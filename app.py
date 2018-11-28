@@ -91,32 +91,16 @@ def get_filter_results():
     if session_user:
         # get DB collection 
         allbrews = mongo.db.brew
-        
-        # # initialize empty list to store form data
-        # brew_choice_list = []
-        # stufffree_list = []
-        # # level = ''
-        
+
         #get form submissions
         if request.method=='POST':
-            # stufffree = request.form.get('stuff-free')
+            free_from = request.form['stuff-free']
             level = request.form['level']
             brew_types = request.form['brew-type']
-            
-            # #append to lists
-            # brew_choice_list.append(brew_types)
-            # stufffree_list.append(stufffree)
-            # # level.append(level)
+
             filter_data = allbrews.find()
-            
-            # filter_data = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
-        
-            # f = []
-            
-            # for brew in filter_data:
-            #     f.append(brew)
-        
-            return render_template('brewresults.html', filter_data=filter_data, level=level, brew_types=brew_types, username=session_user)
+
+            return render_template('brewresults.html', filter_data=filter_data, level=level, brew_types=brew_types, free_from=free_from, username=session_user)
             
     return render_template('login.html') 
     
@@ -256,7 +240,7 @@ def insert_brew():
                 "region": region,
                 "method": method,
                 "properties": properties,
-                "free-from": freefrom,
+                "free_from": freefrom,
                 # "recipe":{"$push":
                 #             {
                 #                 "equip_list": {"$each": [equip_list]}
