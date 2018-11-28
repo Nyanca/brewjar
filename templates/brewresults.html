@@ -28,16 +28,20 @@
             add_circle</i></a>
             </div>
             {% if v.level == 'beginner' %}
-            <div class="col xs2 sm2 m2 l2 xl2">
+            <div class="col xs3 sm3 m2 l2 xl2">
                 <p style='background-color:yellow; border-radius:20px; text-align:center;'>Beginner</p>
             </div>
             {% elif v.level == 'intermdiate' %}
-            <div class="col xs2 sm2 m2 l2 xl2">
+            <div class="col xs3 sm3 m2 l2 xl2">
                 <p style='background-color:red; border-radius:20px; text-align:center;'>Intermediate</p>
             </div>
             {% elif v.level == 'advanced' %}
-            <div class="col xs2 sm2 m2 l2 xl2">
+            <div class="col xs3 sm3 m2 l2 xl2">
                 <p style='background-color:blue; border-radius:20px; text-align:center;'>Advanced</p>
+            </div>
+            {% else %}
+            <div class="col xs3 sm3 m2 l2 xl2">
+                <p style='background-color:blue; border-radius:20px; text-align:center;'>Unknown level</p>
             </div>
             {% endif %}
         </div>
