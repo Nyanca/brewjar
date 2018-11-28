@@ -98,25 +98,26 @@ def get_filter_results():
         # # level = ''
         
         #get form submissions
-        stufffree = request.form.get('stuff-free')
-        level = request.form.get('level')
-        brew_types = request.form.get('brew-type')
+        if request.method=='POST':
+            # stufffree = request.form.get('stuff-free')
+            level = request.form['level']
+            brew_types = request.form['brew-type']
+            
+            # #append to lists
+            # brew_choice_list.append(brew_types)
+            # stufffree_list.append(stufffree)
+            # # level.append(level)
+            filter_data = allbrews.find()
+            
+            # filter_data = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
         
-        # #append to lists
-        # brew_choice_list.append(brew_types)
-        # stufffree_list.append(stufffree)
-        # # level.append(level)
-        filter_data = allbrews.find()
+            # f = []
+            
+            # for brew in filter_data:
+            #     f.append(brew)
         
-        # filter_data = allbrews.find({"recipe_profile.cat_name": brew_types,"recipe_profile.level": level})
-    
-        # f = []
-        
-        # for brew in filter_data:
-        #     f.append(brew)
-    
-        return render_template('brewresults.html', filter_data=filter_data, level=level, brew_types=brew_types, username=session_user)
-        
+            return render_template('brewresults.html', filter_data=filter_data, level=level, brew_types=brew_types, username=session_user)
+            
     return render_template('login.html') 
     
 @app.route('/success')

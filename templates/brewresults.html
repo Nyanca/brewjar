@@ -4,7 +4,8 @@
 <div class="center-text">
     <h5 class='brewjarfont'>Your Brew Results</h5>
 </div>
-{% for brew in filter_data %} {% for k, v in brew.items() %} {% if (v.cat_name == 'wine') and (v.level == 'beginner') %}
+
+{% for brew in filter_data %} {% for k, v in brew.items() %} {% if (v.cat_name == brew_types) and (v.level == level) %}
 
 <ul>
     <li>
