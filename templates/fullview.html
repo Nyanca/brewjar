@@ -1,27 +1,25 @@
-{% extends 'base.html'%}
+{% extends 'base.html'%} {% block content %}
 
-{% block content %}
-
-<div class="row sitefont">
-    <div class="col s8 m8 l8 xl8">
-    {% for k, v in recipe_item.items() %}
-    {% if k == 'author' %}
-    <p>Recipe By: {{ v | title }}</p>
-    {% endif %}
-    {% endfor %}
-    </div>
-    
-     <div class="col s4 m4 l4 xl4 icon">
-        <form action='{{ url_for("add_to_myBrews") }}' method='POST'>
-            <input type="hidden" id="myBrew_id" name="myBrew_id" value="{{ recipe_id }}"/>
-            <input type='submit'/><i class="material-icons icon">
+<div class="row container">
+    <div class="col xs12 m12 l12 xl12">
+        <div class="row sitefont">
+            {% for k, v in recipe_item.items() %} {% if k == 'author' %}
+            <div class="col s8 m8 l8 xl8">
+                <p>Recipe By: {{ v | title }}</p>
+            </div>
+            {% endif %} {% endfor %}
+            <div class="col s4 m4 l4 xl4 icon">
+                <form action='{{ url_for("add_to_myBrews") }}' method='POST'>
+                    <input type="hidden" id="myBrew_id" name="myBrew_id" value="{{ recipe_id }}" />
+                    <input type='submit' /><i class="material-icons icon">
             add_circle</i>
-        </form>
-    </div>
- 
-   {# <div class="col s4 m4 l4 xl4 icon">
-        <form action='{{ url_for("/") }}' methods='POST'>
-            <a href='{{ url_for("/") }}'>
+                </form>
+            </div>
+
+            {#
+            <div class="col s4 m4 l4 xl4 icon">
+                <form action='{{ url_for("/") }}' methods='POST'>
+                    <a href='{{ url_for("/") }}'>
                 {% for k, v in recipe_item.items() %}
                 {% if k == '_id' %}
                 <input type='submit'><i class="material-icons icon">
@@ -30,33 +28,41 @@
                 {% endif %}
                 {% endfor %}
             </a>
-        </form>
-    </div> get id to add recipe to user dashboard, maybe js onclick with nested function in expand_result#}
-</div>
+                </form>
+            </div> get id to add recipe to user dashboard, maybe js onclick with nested function in expand_result#}
+        </div>
 
-
-<div class="row greybackground sitefont">
-    {% for k, v in recipe_item.items() %}
-    {% if k == "author" or k == "recipe_profile" %}
-    <div class="col xs12 m12 l12 xl12">
-        <strong><h4>{{ v.recipe_name | title }}</h4></strong>
-        <h6>{{ v.recipe_description }}</h6>
+        {% for k, v in recipe_item.items() %}{% if k == "author" or k == "recipe_profile" %}
+        <div class="row greybackground sitefont">
+            <div class="col xs12 m12 l12 xl12">
+                <strong><h4>{{ v.recipe_name | title }}</h4></strong>
+                <h6>{{ v.recipe_description }}</h6>
+                {% endif %} {% endfor %}
+            </div>
+        </div>
+        <hr> {% for k, v in recipe_item.items() %} {% if k == "author" or k == "recipe_profile" %} {% if k == 'recipe_profile' %}
+        <div class="row greybackground sitefont">
+            <div class="col xs12 m12 l12 xl12">
+                <div class="row">
+                    <div class="col xs12 m12 l12 xl12">
+                        <h6 class='sitefont'>Equipment List</h6>
+                        {% for equip_list in v.recipe.equip_list %}
+                        <p> {{ loop.index }}{{ (". ") + equip_list[0] | upper }}{{equip_list[1:] }}</p>
+                        {% endfor %}
+                        <h6>Ingredients</h6>
+                        {% for ingredients_list in v.recipe.ingredients_list %}
+                        <p> {{ loop.index}}{{ (". ") + ingredients_list }}</p>
+                        {% endfor %}
+                        <h6>Preparation</h6>
+                        {% for preparation in v.recipe.prep_method %}
+                        <p> {{ loop.index }}{{ (". ") + preparation[0] | upper }}{{ preparation[1:]}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %} {% endif %} {% endfor %}
+        <hr>
     </div>
-    {% endif %}
-    {% endfor %}
 </div>
-
-<hr>
-<div class="row greybackground sitefont">
-    {% for k, v in recipe_item.items() %}
-    {% if k == "author" or k == "recipe_profile" %}
-    <div class="col xs6 m4 l4 xl4">
-        {% for a in v.recipe %}
-        <li class="{{loop.cycle (odd, even)}}">{{ a }}</li>
-        {% endfor %}
-    </div>
-</div>
-    {% endif %}
-    {% endfor %}
-
 {% endblock %}
