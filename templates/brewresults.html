@@ -5,8 +5,7 @@
     <h5 class='brewjarfont'>Your Brew Results</h5>
 </div>
 
-{% for brew in filter_data %} {% for k, v in brew.items() %} {% if (v.cat_name == brew_types) and (v.level == level) %}
-
+{% for brew in filter_data %} {% for k, v in brew.items() %} {% if (v.cat_name == brew_types) or (v.level == level) or (v.free_from == free_from) %}
 <ul>
     <li>
         <div class="row greybackground left">
@@ -14,24 +13,35 @@
                 <img class='responsive-img circle' src='{{ url_for("static", filename="images/brewjar_jar.png") }}' alt="Brewjar Icon"></img>
             </div>
             <div class='col s4 m5 l5 x5 sitefont left'>
-                {# get the document's id when the title is clicked to expand the recipe #}
                 <form method='POST' action='{{ url_for("expand_result") }}'>
                     {% for k, v in brew.items() %} {% if k == "_id" %}
-                    <input type='hidden' id='recipe_id' name='recipe_id' value='{{ v }}'/>
-                    {% endif %} {% endfor %}
-                    <input type="submit" value="{{ v.recipe_name | title }}"/>
+                    <input type='hidden' id='recipe_id' name='recipe_id' value='{{ v }}' /> {% endif %} {% endfor %}
+                    <input type="submit" value="{{ v.recipe_name | title }}" />
                 </form>
                 <hr>
                 <h6>{{ v.recipe_description }}</h6>
             </div>
             <div class='col s2 m2 l2 xl2 icon'><a href='{{url_for("add_vote")}}' action='{{url_for("add_vote")}}'><i class="material-icons">
-        sentiment_satisfied_alt</i></a> {{ v.upvotes }}
+            sentiment_satisfied_alt</i></a> {{ v.upvotes }}
             </div>
             <div class='col s2 m2 l2 xl2 icon'><a href='{{url_for("add_to_myBrews")}}'><i class="material-icons icon">
-        add_circle</i></a>
+            add_circle</i></a>
             </div>
+            {% if v.level == 'beginner' %}
+            <div class="col xs2 m2 l2 xl2" style='background-color:red; border-radius:20px;'>
+                <p>Beginner</p>
+            </div>
+            {% elif v.level == 'intermdiate' %}
+            <div class="col xs2 m2 l2 xl2" style='background-color:yellow; border-radius:20px;'>
+                <p>Intermediate</p>
+            </div>
+            {% elif v.level == 'advanced' %}
+            <div class="col xs2 m2 l2 xl2" style='background-color:black; border-radius:20px;'>
+                <p>Advanced</p>
+            </div>
+            {% endif %}
+        </div>
     </li>
 </ul>
-
 
 {% endif %} {% endfor %} {% endfor %} {% endblock %}
