@@ -36,7 +36,7 @@
             <label>Alcohol or Botanical?</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
-            <select id='style' name='style' multiple>
+            <select id='style' name='style'>
               <option value="" disabled selected>Chooose a style type</option>
               <option value="red wine">red wine</option>
               <option value="white wine">white wine</option>
@@ -59,7 +59,7 @@
     </div>
     <div class='row'>
         <div class="input-field col s12 m6 l6 xl6">
-            <select id='flavour' name='flavour' multiple>
+            <select id='flavour' name='flavour'>
               <option value="" disabled selected>Choose relevant option(s) below</option>
               <option value="tart">tart</option>
               <option value="bitter">bitter</option>
@@ -108,7 +108,7 @@
             <label>Add region</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
-            <select id='method' name='method' multiple>
+            <select id='method' name='method'>
               <option value="" disabled selected>Chooose relevant</option>
               <option value="fermentation">fermentation</option>
               <option value="infusion">infusion</option>
@@ -122,17 +122,18 @@
     </div>
     <div class='row'>
         <div class="input-field col s12 m6 l6 xl6">
-            <select id='free-from' name='free-from' multiple>
-              <option value="" disabled selected>Choose any relevant options</option>
+            <select id='free-from' name='free-from'>
+              <option value="" disabled selected>Choose a relevant option</option>
               <option value="gluten-free">gluten-free</option>
               <option value="dairy-free">dairy-free</option>
               <option value="wheat-free">wheat-free</option>
               <option value="egg-free">egg-free</option>
+              <option value="none">none</option>
             </select>
             <label>Add allergen profile</label>
         </div>
         <div class="input-field col s12 m6 l6 xl6">
-            <select id='properties' name='properties' multiple>
+            <select id='properties' name='properties'>
               <option value="" disabled selected>choose ABV for alcoholic brews</option>
               <option value="0% ABV">0% ABV</option>
               <option value="4% ABV">4% ABV</option>
@@ -162,9 +163,35 @@
             <label>Add brew properties</label>
         </div>
     </div>
+    <div class="row">
+        <div class="col xs12 sm12 m12 l12 xl12">
+            <h5 class='brewjarfont center-text'>Add Brew Recipe</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m12 l12 xl12">
+            <i class="material-icons prefix">subject</i>
+            <textarea id="equip_list" name="equip_list" type="text" class="validate"
+            placeholder='"sieve", "weighing scales", "syphon"'></textarea>
+            <label for="icon_prefix">Add equipment list</label>
+        </div>
+        <div class="input-field col s12 m12 l12 xl12">
+            <i class="material-icons prefix">subject</i>
+            <textarea id="ingredients_list" name="ingredients_list" type="text" class="validate" placeholder='"berries", "sugar", "water"'></textarea>
+            <label for="icon_prefix">Add ingredients list</label>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="input-field col s12 m12 l12 xl12">
+            <i class="material-icons prefix">subject</i>
+            <textarea id="prep-method" name="prep-method" type="tel" class="validate" placeholder='"do this", "do that", "do another thing"'></textarea>
+            <label for="icon_telephone">Add preparation instruction</label>
+        </div>
+    </div>
     <div class='row center-text'>
-        <a href="{{url_for ('add_recipe')}}"><button class='mainbutton' type="submit" id="filterform" name="filterform">Add Recipe Profile<br>
-            <i class="material-icons">local_drink</i></button></a>
+        <a href="{{url_for ('success')}}"><button class='mainbutton' type="submit" id="filterform" name="filterform">Add Recipe<br>
+            <i class="material-icons">local_drink</i></button>
+        </a>
     </div>
 </form>
 {% endblock %}
