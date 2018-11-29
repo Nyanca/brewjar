@@ -75,7 +75,7 @@ def login():
 def home():
     session_user = g.user
     if session_user:
-        return render_template('home.html')
+        return render_template('home.html', username=session_user)
     return render_template('login.html')
 
 @app.route('/choose-a-brew')
