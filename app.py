@@ -220,27 +220,54 @@ def insert_brew():
         method = request.form['method']
         properties = request.form['properties']
         freefrom = request.form['free-from']
-        # equip_list = request.form['equip_list']
-        # ingredients_list = request.form['ingredients_list']
-        # prep_method = request.form['prep_method']
+        equip_list = request.form['equip_list']
+        ingredients_list = request.form['ingredients_list']
+        prep_method = request.form['prep-method']
        
+        array_data = [
+                          {
+                            "equip_list": [equip_list]
+                          },
+                          {
+                            "ingredients_list": [ingredients_list]
+                          },
+                          {
+                            "prep_method": [prep_method]
+                          }
+                    ]
+          
+        # add user input from profile form to the brew collection
+        brews.insert_one({
+                    "author_name": author_name,
+                    "recipe_profile":{
+                            "cat_name": category_name,
+                            "recipe_name": recipe_name,
+                            "recipe_description": recipe_description,
+                            "style": style,
+                            "level": level,
+                            "flavour": flavour,
+                            "region": region,
+                            "method": method,
+                            "properties": properties,
+                            "free_from": freefrom,
+                            "recipe":{ 
+                                array_data
+                            }
+                     }
+            })
         
-        # need help adding recipe object with arrays to collection and help with converting arrays entries into single string values
-    
-        # add user input to the brew collection
-        
-        brews.insert_one({   
-                "author_name": author_name,
-                "cat_name": category_name,
-                "recipe_name": recipe_name,
-                "recipe_description": recipe_description,
-                "style": style,
-                "level": level,
-                "flavour": flavour,
-                "region": region,
-                "method": method,
-                "properties": properties,
-                "free_from": freefrom,
+        # add user input array from recipe form to the brew collection
+        # brews.update({
+        #       "recipe_profile.recipe":{"$push":
+        #                     {
+        #                         "equip_list": {"$each": [equip_list]},
+        #                         "ingredients_list": {"$each": [ingredients_list]},
+        #                         "prep_method": {"$each": [prep_method]}
+        #                     }
+        #                 }
+        #     })
+            
+                #   "recipe": {"$push":{"equip_list":{"$each":[equip_list]}}}
                 # "recipe":{"$push":
                 #             {
                 #                 "equip_list": {"$each": [equip_list]}
@@ -256,10 +283,10 @@ def insert_brew():
                 #               "prep_method": {"$each": [prep_method]}
                 #             }
                 #         }
-        })
+        # })
         
         # brews.insert_one(request.form.to_dict())
-        return render_template('success.html', username=session_user)
+        return render_template('success.html', username=session_user, equip_list=equip_list)
         
     return render_template('login.html') 
 
