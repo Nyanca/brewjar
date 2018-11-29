@@ -220,25 +220,10 @@ def insert_brew():
         method = request.form['method']
         properties = request.form['properties']
         freefrom = request.form['free-from']
-        equip_list = request.form['equip_list']
-        ingredients_list = request.form['ingredients_list']
-        prep_method = request.form['prep-method']
        
-        array_data = [
-                          {
-                            "equip_list": [equip_list]
-                          },
-                          {
-                            "ingredients_list": [ingredients_list]
-                          },
-                          {
-                            "prep_method": [prep_method]
-                          }
-                    ]
-          
         # add user input from profile form to the brew collection
         brews.insert_one({
-                    "author_name": author_name,
+                    "author": author_name,
                     "recipe_profile":{
                             "cat_name": category_name,
                             "recipe_name": recipe_name,
@@ -249,47 +234,85 @@ def insert_brew():
                             "region": region,
                             "method": method,
                             "properties": properties,
-                            "free_from": freefrom,
-                            "recipe":{ 
-                                array_data
+                            "free_from": freefrom, 
+                            "recipe":{
+                                "equip_list":[],
+                                "ingredients_list":[],
+                                "prep_method":[],
                             }
-                     }
-            })
+                        }
+        })
         
-        # add user input array from recipe form to the brew collection
-        # brews.update({
-        #       "recipe_profile.recipe":{"$push":
-        #                     {
-        #                         "equip_list": {"$each": [equip_list]},
-        #                         "ingredients_list": {"$each": [ingredients_list]},
-        #                         "prep_method": {"$each": [prep_method]}
-        #                     }
-        #                 }
-        #     })
-            
-                #   "recipe": {"$push":{"equip_list":{"$each":[equip_list]}}}
-                # "recipe":{"$push":
-                #             {
-                #                 "equip_list": {"$each": [equip_list]}
-                #             }
-                #         },
-                #         {"$push": 
-                #             {
-                #               "ingredients_list": {"$each": [ingredients_list]}
-                #             }
-                #         },
-                #         {"$push":
-                #             {
-                #               "prep_method": {"$each": [prep_method]}
-                #             }
-                #         }
-        # })
+        newBrew = brews.find_one({"author": author_name, "recipe_profile.recipe_name": recipe_name, "recipe_profile.recipe_description":recipe_description})
         
         # brews.insert_one(request.form.to_dict())
-        return render_template('success.html', username=session_user, equip_list=equip_list)
+        return render_template('addBrewRecipe.html', username=session_user, newBrew=newBrew)
         
     return render_template('login.html') 
-
+    
+@app.route('/insert-brew-recipe', methods=['GET','POST'])
+def insert_brew_recipe():
+    # updates the newly created brew profile document with recipe data
+    session_user = g.user
+ 
+    if session_user:
+        # get db
+        brews = mongo.db.brew
+        # get relevant id for newly created brew from hidden form input
+        new_id = request.form['newBrew_id']
+        
+        # get form field submissions form add_recipe form
+        equip_list = request.form['equip_list']
+        ingredients_list = request.form['ingredients_list']
+        prep_method = request.form['prep-method']
+        
+        # find & update new recipe doc with array values
+        brews.update(
+            {"_id": ObjectId(new_id)},
+            {
+                "$push":
+                    {"recipe_profile.recipe.equip_list": {"$each": [equip_list]}}
+            }
+        )
+        
+        brews.update(
+            {"_id": ObjectId(new_id)},
+            {
+                "$push":
+                     {"recipe_profile.recipe.ingredients_list": {"$each": [ingredients_list]}}
+            }
+        )
+        
+        brews.update(
+            {"_id": ObjectId(new_id)},
+            {
+                "$push":
+                     {"recipe_profile.recipe.prep_method": {"$each": [prep_method]}}
+            }
+        )
+        
+        return render_template('success.html')
+        # {
+        #     "$push":
+        #         {
+        #             "recipe_profile.recipe.equip_list": {"$each": equip_list}
+        #         }
+        # },
+        # {
+        #     "$push":
+        #         {
+        #             "recipe_profile.recipe.ingredients_list": {"$each": ingredients_list}
+        #         }
+        # },
+        # {
+        #     "$push":
+        #         {
+        #           "recipe_profile.recipe.prep_method": {"$each": prep_method}
+        #         }
+        # })
+        
+    return render_template('login.html') 
+        
 if __name__ == '__main__':
     app.secret_key = b'\xeb\xd3\x0c\x89P\xed.\x15~\xa6\xc6\xad;\x16\x8fH'
     app.run(host=os.environ.get('IP'),

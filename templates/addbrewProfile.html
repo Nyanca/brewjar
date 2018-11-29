@@ -1,6 +1,6 @@
 {% extends 'base.html' %}{% block content %}
 <div class="row"></div>
-<h4 class='brewjarfont center-text'>Add Brew Profile</h4>
+<h5 class='brewjarfont center-text'>Add Brew Profile</h5>
 
 <form action="{{url_for ('insert_brew')}}" method="POST" class="col s12 sitefont greybackground">
     <div class="row">
@@ -163,33 +163,8 @@
             <label>Add brew properties</label>
         </div>
     </div>
-    <div class="row">
-        <div class="col xs12 sm12 m12 l12 xl12">
-            <h5 class='brewjarfont center-text'>Add Brew Recipe</h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12 m12 l12 xl12">
-            <i class="material-icons prefix">subject</i>
-            <textarea id="equip_list" name="equip_list" type="text" class="validate"
-            placeholder='"sieve", "weighing scales", "syphon"'></textarea>
-            <label for="icon_prefix">Add equipment list</label>
-        </div>
-        <div class="input-field col s12 m12 l12 xl12">
-            <i class="material-icons prefix">subject</i>
-            <textarea id="ingredients_list" name="ingredients_list" type="text" class="validate" placeholder='"berries", "sugar", "water"'></textarea>
-            <label for="icon_prefix">Add ingredients list</label>
-        </div>
-    </div>
-    <div class='row'>
-        <div class="input-field col s12 m12 l12 xl12">
-            <i class="material-icons prefix">subject</i>
-            <textarea id="prep-method" name="prep-method" type="tel" class="validate" placeholder='"do this", "do that", "do another thing"'></textarea>
-            <label for="icon_telephone">Add preparation instruction</label>
-        </div>
-    </div>
     <div class='row center-text'>
-        <a href="{{url_for ('success')}}"><button class='mainbutton' type="submit" id="filterform" name="filterform">Add Recipe<br>
+        <a href="{{url_for ('add_recipe')}}"><button class='mainbutton' type="submit" id="filterform" name="filterform">Add Recipe<br>
             <i class="material-icons">local_drink</i></button>
         </a>
     </div>
