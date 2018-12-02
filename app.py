@@ -263,15 +263,15 @@ def insert_brew_recipe():
         
         # get form field submissions form add_recipe form
         equip_list = request.form['equip_list']
-        ingredients_list = request.form['ingredients_list']
-        prep_method = request.form['prep-method']
+        ingredients_list = request.form.getlist('ingredients_list')
+        prep_method = request.form.getlist('prep-method')
         
         # find & update new recipe doc with array values
         brews.update(
             {"_id": ObjectId(new_id)},
             {
                 "$push":
-                    {"recipe_profile.recipe.equip_list": {"$each": [equip_list]}}
+                    {"recipe_profile.recipe.equip_list": {"$each": equip_list}}
             }
         )
         
@@ -279,7 +279,7 @@ def insert_brew_recipe():
             {"_id": ObjectId(new_id)},
             {
                 "$push":
-                     {"recipe_profile.recipe.ingredients_list": {"$each": [ingredients_list]}}
+                     {"recipe_profile.recipe.ingredients_list": {"$each": ingredients_list}}
             }
         )
         
@@ -287,7 +287,7 @@ def insert_brew_recipe():
             {"_id": ObjectId(new_id)},
             {
                 "$push":
-                     {"recipe_profile.recipe.prep_method": {"$each": [prep_method]}}
+                     {"recipe_profile.recipe.prep_method": {"$each": prep_method}}
             }
         )
         
