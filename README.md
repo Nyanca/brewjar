@@ -52,6 +52,7 @@ Sass is used for styling. It's an incredible resource that made the styling of t
 
 1) User login system implemented at a basic level
 2) Users can log in to their own dashboard and choose from 3 options 1) Browse 2) Create a Brew 3) Visit MyBrews
+
     i) Option 1 brings the users to a filter form where they can select from a number of filter options to refine the database results
     ii) Option 2 allows the user to input a new recipe into the database via two forms, a recipe form and a recipe profile form. These forms correspond directly to the data schema. 
     iii) Option 3 brings the users to their dashboard where they can view recipes which they have saved to myBrews from the online recipe store.
