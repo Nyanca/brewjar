@@ -25,12 +25,21 @@ Traversing the site should be quick and easy. Here are some user stories I wrote
     9) As a novice brewer, I want to join a community to learn new things from
 
 The wireframe created for this project can be found here: https://marvelapp.com/explore/3331449/brewjar 
+
 (**Note: you can access beyond the login pages by clicking on the create account / sign in buttons. )
 
 ## Data Schema    
-I'm using MongoDB as database store and therefore the data schema for this project is noSQL. This is favourable as I can change the schema throughout the progression of the application. However, I also explored relational structures which can be seen as I studied the section blocks of data to include in /wireframe&planning/Brewjar mySQL - Sheet1.pdf/. The actual shape of my data currently is more relational than non-relational because that seems to be the way my head works. All the same, I see the value in non-relational application, and I quite like that my structure is set and yet I have the freedom to change the format of any document within the collection simultaneously. 
+I'm using MongoDB as database store and therefore the data schema for this project is noSQL. This is favourable as I can change the schema throughout the progression of the application. However, I also explored relational structures as I studied the section blocks of data to include:
 
-To begin I found a resource which suggested the ideal data structure is all contained within a single document, and so I deeply nested all of my data after deciding upon included fields which can be seen at /wireframe&planning/data.json/. However, this data was near impossible to access and iterate through which cost a lot of time failing to use mongoDB queries. I therefore split the data in separate documents while maintaining the structure, and finally I was up and running. 
+/wireframe&planning/Brewjar mySQL - Sheet1.pdf/
+
+The actual shape of my data currently is more relational than non-relational because that seems to be the way my head works. All the same, I see the value in non-relational application, and I quite like that my structure is set and yet I have the freedom to change the format of any document within the collection simultaneously. 
+
+To begin I found a resource which suggested the ideal data structure is all contained within a single document, and so I deeply nested all of my data after deciding upon included fields which can be seen at:
+
+/wireframe&planning/data.json/. 
+
+However, this data was near impossible to access and iterate through which cost a lot of time failing to use mongoDB queries. I therefore split the data in separate documents while maintaining the structure, and finally I was up and running. 
 
 ## Tech used 
 Logic is written in Python 3, a language I love to use largely because of it's visual attributes https://www.python.org/
@@ -51,14 +60,21 @@ Sass is used for styling. It's an incredible resource that made the styling of t
 ### existing features
 
 1) User login system implemented at a basic level
-2) Users can log in to their own dashboard and choose from 3 options 1) Browse 2) Create a Brew 3) Visit MyBrews
-
-    i) Option 1 brings the users to a filter form where they can select from a number of filter options to refine the database results
+2) Users can log in to their own dashboard and choose from 3 options:
+    
+    a) Browse Brews
+    b) Create a Brew
+    c) Visit MyBrews
+    
+    i) Option 1 brings the user to a filter form where they can select from a number of filter options to refine the database results
+    
     ii) Option 2 allows the user to input a new recipe into the database via two forms, a recipe form and a recipe profile form. These forms correspond directly to the data schema. 
+    
     iii) Option 3 brings the users to their dashboard where they can view recipes which they have saved to myBrews from the online recipe store.
+    
 4) Brewjar extends basic CRUD operations
 
-## improvements / issues
+### improvements / issues
 1) The current login system represents my first attempt at building a log-in system. There is a clear issue with it in that it repeats itself by passing the session-user variable to each view function as an if..else statement instead of using @login-decorators and proper session handling. With more time, I would implement session handling with flask_login, flask-mongoengine and WTforms.
 
 2) The filter: The current filter is functioning at a very basic level. It will return any document that has one of the selected queries. I would implement a better filter that returns only documents with all of the specified queries. Further, if there are no results it returns blank. I attempted adding an if..else statement where else read 'No recipes match your search. Please try again'. However, this statement would be printed numerous times on the page, seemingly for each iteration that returned blank. This is a bug to be worked on. 
@@ -67,7 +83,7 @@ Further all fields must be filled out within the filter form. I would make it so
 
 3) The form creation functionality must be improved upon. The form for recipe profile creation works well. The recipe document itself is then nested within the recipe profile doc. Further, this nested recipe doc contains nested arrays. It has proved difficult to append data to these nested arrays as intended. For example: 
 
-Form data can be added to the the nested array 'ingedients_list' like so: 
+Form data can be added to the the nested array 'ingredients_list' like so: 
 
      brews.update(
             {"_id": ObjectId(new_id)},
@@ -77,13 +93,21 @@ Form data can be added to the the nested array 'ingedients_list' like so:
             }
         )
         
-    ingredients_list = ['sugar', 'water', 'hops']
+    ingredients_list = [sugar, water, hops]
         
 However, the result of this creates a single string from all of the form data within the DB collection doc. This is not useful for iteration: 
 
-    ingredients_list = ["/'sugar'/'water'/'hops'"]
+    ingredients_list = ["sugar, water, hops"]
 
-I have tried using $split to separate the values at the ',' interval specified as the form input format. However, while I have found that $out can transfer data from a pipeline to a collection, I have not yet discovered a method to update a single document with the new aggregated value. 
+I have tried using $split to separate the values at the ',' interval specified as the form input format so that: 
+
+    ingredients_list = ["sugar, water, hops"]
+
+Would be split at the comma value to become: 
+
+    ingredients_list = ['sugar', 'water', 'hops']
+    
+However, while I have found that $out can transfer data from a pipeline to a collection, I have not yet discovered a method to update a single document with the new aggregated value. 
 
 ## TESTING
 ### Manual Testing: 
