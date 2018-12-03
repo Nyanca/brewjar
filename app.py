@@ -147,6 +147,82 @@ def my_brews():
         return render_template('mybrews.html', user_doc=user_doc, username=session_user, recipe_doc=recipe_doc)
         
     return render_template('login.html') 
+
+@app.route('/edit_recipe', methods=['GET','POST'])
+def edit_recipe():
+    #gets an instance of the recipe to return recipe form with data
+    session_user = g.user
+    
+    if session_user:
+       recipe_id = request.form.get('recipe_doc_id')
+       recipe_doc = mongo.db.brew.find_one({"_id": ObjectId(recipe_id)})
+       
+       return render_template('edit_profile_form.html', recipe_doc=recipe_doc, recipe_id=recipe_id, username=session_user)
+        
+    return render_template('login.html')
+    
+@app.route('/update_recipe', methods=['GET','POST'])
+def update_recipe():
+    #gets updated form data from edit_recipe and updates DB document
+    session_user = g.user
+    
+    if session_user:
+        brews = mongo.db.brew
+        
+        recipe_id = request.form.get('recipe_doc_id')
+
+        # return form field submissions from edit brew profile
+        author_name = request.form.get('author_name')
+        category_name = request.form.get('cat-name')
+        recipe_name = request.form.get('recipe_name')
+        recipe_description = request.form.get('recipe_description')
+        style = request.form.get('style')
+        level = request.form.get('level')
+        flavour = request.form.get('flavour')
+        region = request.form.get('region')
+        method = request.form.get('method')
+        properties = request.form.get('properties')
+        freefrom = request.form.get('free-from')
+        
+        brews.update_one({"_id": ObjectId(recipe_id)}, 
+                    {"$set":{ 
+                        "author": author_name,
+                        "recipe_profile":{
+                                "cat_name": category_name,
+                                "recipe_name": recipe_name,
+                                "recipe_description": recipe_description,
+                                "style": style,
+                                "level": level,
+                                "flavour": flavour,
+                                "region": region,
+                                "method": method,
+                                "properties": properties,
+                                "free_from": freefrom,
+                                "recipe":{
+                                "equip_list":[],
+                                "ingredients_list":[],
+                                "prep_method":[],
+                            }
+                        }
+                     }
+                })
+       
+        return render_template('home.html', username=session_user)
+        
+    return render_template('login.html')
+ 
+@app.route('/delete_recipe', methods=['GET','POST'])
+def delete_recipe():
+    #gets an instance of the recipe with id, and deletes that recipe from the database
+    session_user = g.user
+    
+    if session_user:
+       recipe_id = request.form.get('recipe_doc_id')
+       recipe_doc = mongo.db.brew.remove({"_id": ObjectId(recipe_id)})
+       
+       return render_template('home.html', username=session_user)
+        
+    return render_template('login.html')
     
 @app.route('/add_vote', methods=['GET','POST'])
 def add_vote():
@@ -193,11 +269,13 @@ def add_to_myBrews():
         # get user
         session_user = g.user
         
+        user_doc = mongo.db.user.find_one({'username':session_user})
+        
         # enter recipe into user's recipe dashboard myBrews 
         user.update({'username': session_user},
             {"$addToSet":{"mybrews": {"_id": ObjectId(myBrew_id)}} }
         ) 
-        return render_template('success.html', myBrews_entry = myBrews_entry, myBrew_id=myBrew_id, username=session_user)
+        return render_template('success.html', username=session_user)
         
     return render_template('login.html') 
     
@@ -245,7 +323,6 @@ def insert_brew():
         
         newBrew = brews.find_one({"author": author_name, "recipe_profile.recipe_name": recipe_name, "recipe_profile.recipe_description":recipe_description})
         
-        # brews.insert_one(request.form.to_dict())
         return render_template('addBrewRecipe.html', username=session_user, newBrew=newBrew)
         
     return render_template('login.html') 
@@ -292,25 +369,6 @@ def insert_brew_recipe():
         )
         
         return render_template('success.html')
-        # {
-        #     "$push":
-        #         {
-        #             "recipe_profile.recipe.equip_list": {"$each": equip_list}
-        #         }
-        # },
-        # {
-        #     "$push":
-        #         {
-        #             "recipe_profile.recipe.ingredients_list": {"$each": ingredients_list}
-        #         }
-        # },
-        # {
-        #     "$push":
-        #         {
-        #           "recipe_profile.recipe.prep_method": {"$each": prep_method}
-        #         }
-        # })
-        
     return render_template('login.html') 
         
 if __name__ == '__main__':

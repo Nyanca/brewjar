@@ -41,6 +41,51 @@ To begin I found a resource which suggested the ideal data structure is all cont
 
 However, this data was near impossible to access and iterate through which cost a lot of time failing to use mongoDB queries. I therefore split the data in separate documents while maintaining the structure, and finally I was up and running. 
 
+The data structure for the recipe store is structured as follows:
+
+    {
+    "_id": {
+        "$oid": "5bcba048e7179a4377ffe4bb"
+    },
+    "author": "Jennifer Doyle",
+    "recipe_profile": {
+        "cat_name": "wine",
+        "recipe_name": "summer berry",
+        "recipe_description": "a strong berry taste for the lovers of rich wine",
+        "style": "red",
+        "level": "beginner",
+        "flavour": "sweet",
+        "region": "local",
+        "method": "fermentation",
+        "properties": "ABV 9%",
+        "free_from": [
+            "gluten-free"
+        ],
+        "date_added": "24/09/17",
+        "upvotes": "60",
+        "recipe": {
+            "equip_list": [
+                "scissors",
+                "saucepan",
+                "strainer"
+            ],
+            "ingredients_list": [
+                "200g mixed berries",
+                "200g sugar",
+                "1 pk wineyeast"
+            ],
+            "prep_method": [
+                "add the berries",
+                "add the sugar & yeast",
+                "leave for  week",
+                "sieve and move to a dark place",
+                "leave for 3 weeks, checking regularly",
+                "enjoy"
+            ]
+        }
+     }
+    }
+
 ## Tech used 
 Logic is written in Python 3, a language I love to use largely because of it's visual attributes https://www.python.org/
 
@@ -72,7 +117,27 @@ Sass is used for styling. It's an incredible resource that made the styling of t
     
     iii) Option 3 brings the users to their dashboard where they can view recipes which they have saved to myBrews from the online recipe store.
     
-4) Brewjar extends basic CRUD operations
+    **issue with feature Option 3: While users can successfully append recipes to their user DB, only the first recipe appended will show up in myBrews. This is because the append to myBrews function adds the recipe_id to the user DB. In this view function, I have then accessed the first recipe ID by index and hard-coded in the first recipe item for iteration. I have not been able to solves how to iterate through a list of indexes dynamically. 
+    For example:
+    
+        # enter recipe into user's recipe dashboard myBrews via recipe id
+            user.update({'username': session_user},
+                {"$addToSet":{"mybrews": {"_id": ObjectId(myBrew_id)}} }
+            ) 
+            return render_template('success.html', username=session_user)
+        
+        # store the first recipe in the list of recipe id's in a variable for iteration:
+        for k,v in user_doc.items():
+            if k == 'mybrews':
+                c = v[1]
+                for k,v in c.items():
+                    recipe_id = v
+                    recipe_doc = mongo.db.brew.find({"_id": ObjectId(recipe_id)})
+                    
+4) Brewjar extends CRUD operations. 
+    ** Note on update_recipe view:
+    While this view works as expected to update the recipe_profile, its functionality overwrites any data stored in the nested data document 'recipe'. A fix is needed to pass old data from this document to the update function, or to find a way to ignore any data fields which are not passed to the update function. 
+    
 
 ### improvements / issues
 1) The current login system represents my first attempt at building a log-in system. There is a clear issue with it in that it repeats itself by passing the session-user variable to each view function as an if..else statement instead of using @login-decorators and proper session handling. With more time, I would implement session handling with flask_login, flask-mongoengine and WTforms.

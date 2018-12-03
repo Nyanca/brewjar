@@ -1,9 +1,22 @@
 {% extends 'base.html'%} {% block content %}
-
 <div class="row container">
     <div class="col xs12 m12 l12 xl12">
         <div class="row sitefont">
             {% for k, v in recipe_item.items() %} {% if k == 'author' %}
+            {% if username == v %}
+                <div class="col s6 m4 l4 xl4">
+                    <form method='POST' action='{{url_for("edit_recipe")}}'>
+                       <input type="hidden" id="recipe_doc_id" name="recipe_doc_id" value="{{ recipe_id }}"/>
+                       <input type='submit' value='edit brew' style='background-color:#2CACB0; border-radius:20px; color:#F2F3F3;'>
+                    </form>
+                </div>
+                <div class="col s6 m4 l4 xl4">
+                    <form method='POST' action='{{url_for("delete_recipe")}}'>
+                       <input type="hidden" id="recipe_doc_id" name="recipe_doc_id" value="{{ recipe_id }}"/>
+                       <input type='submit' value='delete brew' style='background-color:#2CACB0; border-radius:20px; color:#F2F3F3;'>
+                    </form>
+                </div>
+            {% endif %}
             <div class="col s8 m8 l8 xl8">
                 <p>Recipe By: {{ v | title }}</p>
             </div>
@@ -11,8 +24,8 @@
             <div class="col s4 m4 l4 xl4 icon">
                 <form action='{{ url_for("add_to_myBrews") }}' method='POST'>
                     <input type="hidden" id="myBrew_id" name="myBrew_id" value="{{ recipe_id }}" />
-                    <input type='submit' /><i class="material-icons icon">
-            add_circle</i>
+                    <a href='{{url_for("add_to_myBrews")}}'><i class="material-icons icon">
+            add_circle</i></a>
                 </form>
             </div>
 
