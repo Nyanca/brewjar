@@ -136,7 +136,7 @@ Sass is used for styling. It's an incredible resource that made the styling of t
                     
 4) Brewjar extends CRUD operations. 
     ** Note on update_recipe view:
-    While this view works as expected to update the recipe_profile, its functionality overwrites any data stored in the nested data document 'recipe'. A fix is needed to pass old data from this document to the update function, or to find a way to ignore any data fields which are not passed to the update function. 
+    While this view works as expected to update the recipe_profile, its functionality overwrites any data stored in the nested data document 'recipe'. A fix is needed to pass old data from this document to the update function, or to find a way to ignore any data fields which are not passed to the update function. Otherwise, following an update command, no data will be presented for the recipe instructions in fullview.html or mybrews.html
     
 
 ### improvements / issues
@@ -193,7 +193,7 @@ This application has been tested manually. Here are some example scenarios:
     *this test made me aware that the filter form must be filled out in full because the view function requests data from each field, so empty fields raise a KeyError. 
 
 ### Unittest    
-Testing has been carried out using unittest. 
+Basic route testing has been carried out using unittest. However, due to the login system presented testing has proved difficult because test page load tests fail without a session user. And this is outside of the scope of this project. 
 
 ### THANKS
 Throughout the development process I found the following tutorials by DiscoverFlask very userful: https://github.com/realpython/discover-flask
