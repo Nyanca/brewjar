@@ -5,24 +5,6 @@ import pytest
 from flask import session, g
 from app import app, login
 
-
-# tester = app.test_client()
-# response = tester.post('/log-in', data=dict(username='admin', password='admin'), follow_redirects=True)
-
-# @pytest.fixture
-# def client():
-#     db_fd, brewjar.app.config['DATABASE'] = tempfile.mkstemp()
-#     brewjar.app.config['TESTING'] = True
-#     client = brewjar.app.test_client()
-
-#     with brewjar.app.app_context():
-#         brewjar.init_db()
-
-#     yield client
-
-#     os.close(db_fd)
-#     os.unlink(brewjar.app.config['DATABASE'])
-
 class TestFlaskRoutes(unittest.TestCase):
     # check that flask set-up correctly at index
     def test_index_page_loads(self):
