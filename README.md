@@ -1,4 +1,5 @@
 # Brewjar Online Recipe Store
+Live Demo: https://brewjar-app.herokuapp.com/
 
 ### Intro Summary
 This project has been developed as part of CI Dublin's coding bootcamp for software developers following modules in HTML, CSS, User Centric Frontend Dev, Javascript Fundamentals, Interactive Frontend Dev, Python Fundamentals, Practical Python and Data Centric Dev. The brief was to create an online recipe store, and so I created Brewjar. 
