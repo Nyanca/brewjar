@@ -139,7 +139,7 @@ def my_brews():
         for k,v in user_doc.items():
             if k == 'mybrews':
             # need to find dynamic way to access all recipe id's in the array
-                c = v[1]
+                c = v[0]
                 for k,v in c.items():
                     recipe_id = v
                     recipe_doc = mongo.db.brew.find({"_id": ObjectId(recipe_id)})
@@ -375,4 +375,4 @@ if __name__ == '__main__':
     app.secret_key = b'\xeb\xd3\x0c\x89P\xed.\x15~\xa6\xc6\xad;\x16\x8fH'
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=True)
+        debug=False)
