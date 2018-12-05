@@ -135,6 +135,8 @@ Sass is used for styling. It's an incredible resource that made the styling of t
                     recipe_id = v
                     recipe_doc = mongo.db.brew.find({"_id": ObjectId(recipe_id)})
                     
+    ** when using my admin user login details, myBrews shows the second recipe stored in the user DB collection as indexed above. When I created another test user and added a recipe, the id was successfully added to myBrews. However, it did not show up in myBrews (after changing the index to 0 to display the first recipe if only one has been added). I rather like the pop out accordion style idea for the myBrews feature recipe store. If you'd like to see it log in with username: admin and password: admin. 
+                    
 4) Brewjar extends CRUD operations. 
     ** Note on update_recipe view:
     While this view works as expected to update the recipe_profile, its functionality overwrites any data stored in the nested data document 'recipe'. A fix is needed to pass old data from this document to the update function, or to find a way to ignore any data fields which are not passed to the update function. Otherwise, following an update command, no data will be presented for the recipe instructions in fullview.html or mybrews.html
